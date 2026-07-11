@@ -12,7 +12,24 @@ Note: a public repo means anyone with the URL can read it. For a truly private
 share, either keep the repo private and host elsewhere (Netlify with password,
 Cloudflare Pages + Access), or accept "unlisted" visibility on GitHub Pages.
 
+## Language
+
+German is the default; the EN button in the filter bar switches to English
+(also reachable directly via `naples.html#en`). All texts live in
+`js/naples-data.js` (`desc: { de, en }`) and the `I18N` object in `js/guide.js`.
+
+## Map ↔ list sync
+
+By default the card list only shows places inside the current map view
+("Liste folgt Karte" button, toggleable). Marker popups have a "show entry"
+link that scrolls to and highlights the matching card. "Alles anzeigen" zooms
+out to include the day trips.
+
 ## Add your photos
+
+The hero image is `images/hero-napoli.jpg` (used on both pages; if the file
+is missing, the header falls back to plain dark). Replace it any time —
+landscape, ~1800 px wide works well.
 
 1. Drop the image into `images/` (e.g. `images/masardona.jpg`). Recommended:
    landscape 3:2, ~1200 px wide, JPEG.

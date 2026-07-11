@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +11,38 @@
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-lang="de">
 
-<header class="hero wrap">
-  <p class="eyebrow"><a href="index.html" style="color:inherit">City Notes</a> — a friend's guide</p>
-  <h1>Napo<span class="accent">li</span></h1>
-  <p class="sub">Fried dough, Caravaggio, Maradona and the loudest, most alive city in Italy.
-     Everything below is personal opinion from repeated visits — no sponsored anything.</p>
-  <p class="updated">Last updated: July 2026 · Opening hours change constantly in Naples — always check the Maps link before heading out.</p>
-  <div class="rule" aria-hidden="true"></div>
+<header class="hero hero-img">
+  <!-- Dein Foto: images/hero-napoli.jpg ablegen (Querformat, ~1800px breit).
+       Fehlt das Bild, fällt der Header automatisch auf die dunkle Variante zurück. -->
+  <img class="hero-bg" src="images/hero-napoli.jpg" alt=""
+       onerror="this.closest('header').classList.remove('hero-img'); this.remove();">
+  <div class="hero-content wrap">
+    <p class="eyebrow"><a href="index.html" style="color:inherit">City Notes</a></p>
+    <h1>Napo<span class="accent">li</span></h1>
+    <p class="sub lang-de">Pizza fritta, Caravaggio, Maradona — persönliche Tipps aus mehreren Besuchen. Keine gesponserten Empfehlungen, nur ehrliche Meinung.</p>
+    <p class="sub lang-en">Fried dough, Caravaggio, Maradona — personal tips from repeated visits. Nothing sponsored, honest opinions only.</p>
+    <p class="updated lang-de">Stand: Juli 2026 · Öffnungszeiten ändern sich in Neapel ständig — vor dem Losgehen immer den Maps-Link checken.</p>
+    <p class="updated lang-en">Last updated: July 2026 · Opening hours change constantly in Naples — always check the Maps link before heading out.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </div>
 </header>
 
-<nav class="bar" aria-label="Filter places">
+<nav class="bar" aria-label="Filter">
   <div class="wrap bar-inner">
     <div class="chips" id="chips"></div>
-    <input class="search" id="search" type="search" placeholder="Search…" aria-label="Search places">
+    <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+    <button class="chip lang-btn" id="lang-toggle" aria-label="Sprache wechseln">EN</button>
   </div>
 </nav>
 
-<section class="map-section wrap" aria-label="Map">
+<section class="map-section wrap" aria-label="Karte">
   <div id="map"></div>
   <div class="map-actions">
-    <button class="map-btn" id="btn-city">Center on Naples</button>
-    <button class="map-btn" id="btn-all">Show everything (incl. day trips)</button>
+    <button class="map-btn" id="btn-city">Auf Neapel zentrieren</button>
+    <button class="map-btn" id="btn-all">Alles anzeigen</button>
+    <button class="map-btn" id="btn-sync" aria-pressed="true">Liste folgt Karte</button>
   </div>
 </section>
 
@@ -44,15 +53,27 @@
 
 <section class="info-section">
   <div class="wrap">
-    <h2>Good to know</h2>
+    <h2 class="lang-de">Gut zu wissen</h2>
+    <h2 class="lang-en">Good to know</h2>
     <div class="rule" aria-hidden="true"></div>
     <div class="info-grid">
 
-      <div class="info-card">
+      <div class="info-card lang-de">
+        <h3>U-Bahn &amp; Co.</h3>
+        <p>Linie 1 (die wichtige: Toledo, Dante, Museo…), Linie 6 (Municipio ↔ Fuorigrotta über Chiaia/Mergellina, eröffnet 2024) und vier Funicolari — alles ANM. Linie 2 hat einen anderen Betreiber (Trenitalia) und eigene Tickets.</p>
+        <p>Update 2026: Die L6 fährt seit März Mo–Fr bis ca. 21 Uhr, am Wochenende weiterhin nur vormittags (bis ~15 Uhr).</p>
+        <p>Circumvesuviana usw. (Pompeji, Ercolano, Sorrent) werden von EAV betrieben und fahren zum Großteil rechts unterhalb des Hauptbahnhofs — unübersichtlich, ein paar Minuten Puffer einplanen.</p>
+        <table>
+          <tr><td>Einzelticket (ANM)</td><td>1,50 €</td></tr>
+          <tr><td>Funicolare</td><td>1,30 €</td></tr>
+          <tr><td>Tageskarte (gilt nicht für Linie 2!)</td><td>4,50 €</td></tr>
+        </table>
+      </div>
+      <div class="info-card lang-en">
         <h3>Getting around</h3>
-        <p>Metro: Line 1 (the useful one — Toledo, Dante, Museo…), Line 6 (Municipio ↔ Fuorigrotta via Chiaia/Mergellina, opened 2024) and four funiculars, all run by ANM. Line 2 is run by Trenitalia and needs its own tickets.</p>
-        <p>Line 6 finally runs longer since March 2026: Mon–Fri until about 21:00, weekends mornings only (until ~15:00).</p>
-        <p>Circumvesuviana &amp; co. (for Pompeii, Herculaneum, Sorrento) are run by EAV and leave mostly from the lower level to the right underneath Napoli Centrale — it's confusing, plan a few extra minutes.</p>
+        <p>Line 1 (the useful one — Toledo, Dante, Museo…), Line 6 (Municipio ↔ Fuorigrotta via Chiaia/Mergellina, opened 2024) and four funiculars, all run by ANM. Line 2 is run by Trenitalia and needs its own tickets.</p>
+        <p>Since March 2026, Line 6 runs Mon–Fri until about 21:00; weekends mornings only (until ~15:00).</p>
+        <p>Circumvesuviana &amp; co. (Pompeii, Herculaneum, Sorrento) are run by EAV and leave mostly from the lower level underneath Napoli Centrale — it's confusing, plan a few extra minutes.</p>
         <table>
           <tr><td>Single ticket (ANM)</td><td>€1.50</td></tr>
           <tr><td>Funicular</td><td>€1.30</td></tr>
@@ -60,7 +81,18 @@
         </table>
       </div>
 
-      <div class="info-card">
+      <div class="info-card lang-de">
+        <h3>Artecard</h3>
+        <p>Lohnt sich relativ schnell, auch wenn das System etwas unübersichtlich ist. Online/per App kaufen, man bekommt einen QR-Code. Bei den 3-Tages-Versionen ist der Nahverkehr dabei. Wer nach Pompeji will, nimmt eine Campania-Variante statt der reinen Napoli-Karte.</p>
+        <table>
+          <tr><td>Napoli 3 Tage (3 Sites + Transport)</td><td>27 €</td></tr>
+          <tr><td>Campania 3 Tage (2 Sites + Transport)</td><td>41 €</td></tr>
+          <tr><td>Campania 7 Tage (5 Sites, ohne Transport)</td><td>43 €</td></tr>
+          <tr><td>365 Lite (34 Sites, je 1×, ohne Transport)</td><td>26 €</td></tr>
+        </table>
+        <p style="margin-top:10px"><a href="https://www.campaniartecard.it/pass/?lang=en" target="_blank" rel="noopener">campaniartecard.it ↗</a> (Preise Stand 2026)</p>
+      </div>
+      <div class="info-card lang-en">
         <h3>Artecard</h3>
         <p>Pays off quickly, even if the system is a bit confusing. Buy online / via app, you get a QR code. Urban transport is included in the 3-day versions. Going to Pompeii? Take a Campania version instead of the Naples-only one.</p>
         <table>
@@ -72,7 +104,19 @@
         <p style="margin-top:10px"><a href="https://www.campaniartecard.it/pass/?lang=en" target="_blank" rel="noopener">campaniartecard.it ↗</a> (prices as of 2026)</p>
       </div>
 
-      <div class="info-card">
+      <div class="info-card lang-de">
+        <h3>Stadtteile</h3>
+        <ul>
+          <li><strong>Centro Storico</strong> — der antike Kern, Kirchen, Chaos</li>
+          <li><strong>Quartieri Spagnoli</strong> — Maradona, Wäsche, Leben</li>
+          <li><strong>Vomero</strong> — oben auf dem Hügel, elegant, beste Aussicht</li>
+          <li><strong>Chiaia</strong> — schick, Weinbars, Uferpromenade</li>
+          <li><strong>Sanità</strong> — Katakomben, Pasticcerie, am meisten unterschätzt</li>
+          <li><strong>Posillipo</strong> — Villen und Badestellen</li>
+          <li><strong>Hafen / Centrale</strong> — Ankunft, Sfogliatelle, Pizza fritta</li>
+        </ul>
+      </div>
+      <div class="info-card lang-en">
         <h3>Neighbourhoods</h3>
         <ul>
           <li><strong>Centro Storico</strong> — the ancient core, churches, chaos</li>
@@ -85,7 +129,15 @@
         </ul>
       </div>
 
-      <div class="info-card">
+      <div class="info-card lang-de">
+        <h3>Weitere Listen</h3>
+        <p>Zwei Google-Maps-Listen, die man sich speichern sollte:</p>
+        <ul>
+          <li><a href="https://maps.app.goo.gl/e39y5FSc8opSWez27" target="_blank" rel="noopener">Gambero Rosso — Pizze di Napoli ↗</a></li>
+          <li><a href="https://maps.app.goo.gl/L1p1sKSccxUpoy1aA" target="_blank" rel="noopener">Gambero Rosso — Gesamtliste ↗</a></li>
+        </ul>
+      </div>
+      <div class="info-card lang-en">
         <h3>More lists</h3>
         <p>Two Google Maps lists worth saving:</p>
         <ul>
@@ -100,8 +152,8 @@
 
 <footer>
   <div class="wrap">
-    <p>Personal notes, shared with friends. Ratings, hours and prices drift — the Google Maps links always win.
-       <a href="index.html">← All cities</a></p>
+    <p class="lang-de">Persönliche Notizen, geteilt mit Freunden. Bewertungen, Zeiten und Preise ändern sich — im Zweifel gilt der Google-Maps-Link. <a href="index.html">← Alle Städte</a></p>
+    <p class="lang-en">Personal notes, shared with friends. Ratings, hours and prices drift — the Google Maps links always win. <a href="index.html">← All cities</a></p>
   </div>
 </footer>
 

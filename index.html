@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,38 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-lang="de">
 
-<header class="hero wrap">
-  <p class="eyebrow">City Notes</p>
-  <h1>Places I'd send<br>a friend<span class="accent">.</span></h1>
-  <p class="sub">Personal city guides, built from repeated visits and too many pizze fritte.
-     Honest opinions only — including the famous places that aren't worth your time.</p>
-  <div class="rule" aria-hidden="true"></div>
+<header class="hero hero-img">
+  <img class="hero-bg" src="images/hero-napoli.jpg" alt=""
+       onerror="this.closest('header').classList.remove('hero-img'); this.remove();">
+  <div class="hero-content wrap">
+    <p class="eyebrow">City Notes</p>
+    <h1>Orte, die ich Freunden<br>empfehlen würde<span class="accent">.</span></h1>
+    <p class="sub">Persönliche Stadt-Guides aus wiederholten Besuchen und zu vielen Pizze fritte.
+       Nur ehrliche Meinung — inklusive der berühmten Orte, die sich nicht lohnen.</p>
+    <div class="rule" aria-hidden="true"></div>
+  </div>
 </header>
 
 <main class="wrap">
   <div class="cities">
     <a class="city-card" href="naples.html">
-      <span class="tag">Live</span>
+      <span class="tag">Online</span>
       <h2>Napoli</h2>
-      <p>Pizza fritta, Caravaggio, Maradona. 55+ places, mapped.</p>
+      <p>Pizza fritta, Caravaggio, Maradona. 60 Orte, mit Karte. Deutsch/Englisch.</p>
     </a>
     <a class="city-card soon" href="#" aria-disabled="true">
-      <span class="tag">Coming soon</span>
+      <span class="tag">In Arbeit</span>
       <h2>Roma</h2>
-      <p>In the works.</p>
+      <p>Kommt bald.</p>
     </a>
     <a class="city-card soon" href="#" aria-disabled="true">
-      <span class="tag">Coming soon</span>
+      <span class="tag">In Arbeit</span>
       <h2>Palermo</h2>
-      <p>In the works.</p>
+      <p>Kommt bald.</p>
     </a>
   </div>
 </main>
 
 <footer>
-  <div class="wrap"><p>Private guides for friends. Not affiliated with anything or anyone.</p></div>
+  <div class="wrap"><p>Private Guides für Freunde. Unabhängig, ohne Werbung.</p></div>
 </footer>
 
 </body>
