@@ -11,19 +11,19 @@
    ============================================================ */
 
 :root {
-  --ink: #0d131a;
-  --panel: #151e28;
-  --panel-2: #1a2531;
-  --line: #24303d;
-  --cream: #efe9dc;
-  --muted: #91a0ae;
-  --azzurro: #5fb2e6;
-  --amber: #f0a94e;
+  --ink: #001a3a;
+  --panel: #002a5c;
+  --panel-2: #003c82;
+  --line: #124a86;
+  --cream: #ffffff;
+  --muted: #9bb8d8;
+  --azzurro: #12a0d7;
+  --amber: #12a0d7;
   --c-pizza: #f0a94e;
   --c-street: #ef7f6b;
   --c-coffee: #d9c27c;
   --c-bars: #c96f85;
-  --c-sights: #5fb2e6;
+  --c-sights: #12a0d7;
   --c-trips: #7fcf9b;
   --radius: 14px;
   --font-display: "Fraunces", Georgia, serif;
@@ -60,7 +60,11 @@ a:focus-visible, button:focus-visible {
 
 /* ---------- hero ---------- */
 .hero-content { padding: 56px 0 28px; }
-.hero-img { position: relative; overflow: hidden; }
+.hero-img {
+  position: relative; overflow: hidden;
+  margin: 16px 16px 0;
+  border-radius: 20px;
+}
 .hero-img .hero-bg {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center 62%;
@@ -68,15 +72,15 @@ a:focus-visible, button:focus-visible {
 .hero-img::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(13,19,26,0.96) 0%, rgba(13,19,26,0.55) 45%, rgba(13,19,26,0.15) 100%),
-    linear-gradient(to right, rgba(13,19,26,0.55) 0%, rgba(13,19,26,0) 60%);
+    linear-gradient(to top, rgba(0,26,58,0.96) 0%, rgba(0,26,58,0.55) 45%, rgba(0,26,58,0.15) 100%),
+    linear-gradient(to right, rgba(0,26,58,0.55) 0%, rgba(0,26,58,0) 60%);
 }
 .hero-img .hero-content {
   position: relative; z-index: 2;
-  padding: 150px 0 34px;
+  padding: 150px 24px 34px;
   text-shadow: 0 1px 14px rgba(0,0,0,0.55);
 }
-.hero-img .sub, .hero-img .updated { color: #dfe6ec; }
+.hero-img .sub, .hero-img .updated { color: #e6f0fa; }
 .hero .eyebrow {
   font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--amber); margin: 0 0 10px;
@@ -96,13 +100,13 @@ a:focus-visible, button:focus-visible {
 /* scudetto rule: the double stripe under section titles */
 .rule {
   height: 6px; width: 72px; margin: 22px 0 0;
-  background: linear-gradient(to bottom, var(--azzurro) 0 2px, transparent 2px 4px, var(--amber) 4px 6px);
+  background: linear-gradient(to bottom, var(--azzurro) 0 2px, transparent 2px 4px, #ffffff 4px 6px);
 }
 
 /* ---------- sticky filter bar ---------- */
 .bar {
   position: sticky; top: 0; z-index: 500;
-  background: rgba(13, 19, 26, 0.92);
+  background: rgba(0, 26, 58, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
   padding: 10px 0;
@@ -203,9 +207,9 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase; border-radius: 4px; padding: 2px 7px;
   margin-left: 6px; vertical-align: 2px; font-family: var(--font-body); font-weight: 600;
 }
-.badge.todo { background: #2a3542; color: var(--muted); }
+.badge.todo { background: #063363; color: var(--muted); }
 .badge.closed { background: #4a2530; color: #e89aa8; }
-.card p.desc { color: #c8cfd6; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
+.card p.desc { color: #cfe0f2; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
 .card .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
 .card .links a::after { content: " ↗"; font-size: 11px; }
 
@@ -227,12 +231,12 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-display); font-weight: 550;
   font-size: 19px; margin: 0 0 10px; color: var(--amber);
 }
-.info-card p, .info-card li { color: #c8cfd6; font-size: 14.5px; }
+.info-card p, .info-card li { color: #cfe0f2; font-size: 14.5px; }
 .info-card p { margin: 0 0 10px; }
 .info-card ul { margin: 0; padding-left: 18px; }
 .info-card li { margin-bottom: 6px; }
 .info-card table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.info-card td { padding: 5px 0; border-bottom: 1px solid var(--line); color: #c8cfd6; }
+.info-card td { padding: 5px 0; border-bottom: 1px solid var(--line); color: #cfe0f2; }
 .info-card td:last-child { text-align: right; white-space: nowrap; color: var(--cream); }
 .info-card tr:last-child td { border-bottom: none; }
 
@@ -281,4 +285,24 @@ body[data-lang="en"] .lang-de { display: none; }
 @keyframes cardflash {
   0%, 60% { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber); }
   100% { border-color: var(--line); box-shadow: none; }
+}
+
+
+/* ---------- search clear button ---------- */
+.search-wrap { position: relative; margin-left: auto; display: inline-flex; }
+.search-wrap .search { margin-left: 0; padding-right: 30px; }
+.search-clear {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border: none; border-radius: 50%;
+  background: var(--line); color: var(--cream);
+  font-size: 13px; line-height: 20px; text-align: center; cursor: pointer;
+  padding: 0; display: none;
+}
+.search-clear:hover { background: var(--azzurro); color: var(--ink); }
+.search-wrap.has-value .search-clear { display: block; }
+/* hide the ugly native webkit clear cross, we use our own */
+.search::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+@media (max-width: 640px) {
+  .search-wrap { margin-left: 0; width: 100%; }
+  .search-wrap .search { width: 100%; }
 }
