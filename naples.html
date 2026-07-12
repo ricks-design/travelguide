@@ -21,10 +21,10 @@
   <div class="hero-content wrap">
     <p class="eyebrow"><a href="index.html" style="color:inherit">City Notes</a></p>
     <h1>Napo<span class="accent">li</span></h1>
-    <p class="sub lang-de">Pizza fritta, Caravaggio, Maradona — persönliche Tipps aus mehreren Besuchen. Keine gesponserten Empfehlungen, nur ehrliche Meinung.</p>
-    <p class="sub lang-en">Fried dough, Caravaggio, Maradona — personal tips from repeated visits. Nothing sponsored, honest opinions only.</p>
-    <p class="updated lang-de">Stand: Juli 2026 · Öffnungszeiten ändern sich in Neapel ständig — vor dem Losgehen immer den Maps-Link checken.</p>
-    <p class="updated lang-en">Last updated: July 2026 · Opening hours change constantly in Naples — always check the Maps link before heading out.</p>
+    <p class="sub lang-de">Pizza fritta, Caravaggio, Maradona — persönliche Tipps aus diversen Besuchen in dieser tollen Stadt. <em>Vedi Napoli e poi muori.</em></p>
+    <p class="sub lang-en">Fried dough, Caravaggio, Maradona — personal tips from many visits to this wonderful city. <em>Vedi Napoli e poi muori.</em></p>
+    <p class="updated lang-de">Stand: Mai 2025 • <a href="#info">gut zu wissen ↓</a></p>
+    <p class="updated lang-en">Last updated: May 2025 • <a href="#info">good to know ↓</a></p>
     <div class="rule" aria-hidden="true"></div>
   </div>
 </header>
@@ -32,7 +32,10 @@
 <nav class="bar" aria-label="Filter">
   <div class="wrap bar-inner">
     <div class="chips" id="chips"></div>
-    <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+    <span class="search-wrap" id="search-wrap">
+      <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+      <button class="search-clear" id="search-clear" type="button" aria-label="Suche löschen">✕</button>
+    </span>
     <button class="chip lang-btn" id="lang-toggle" aria-label="Sprache wechseln">EN</button>
   </div>
 </nav>
@@ -51,7 +54,7 @@
   <div class="grid" id="grid"></div>
 </section>
 
-<section class="info-section">
+<section class="info-section" id="info">
   <div class="wrap">
     <h2 class="lang-de">Gut zu wissen</h2>
     <h2 class="lang-en">Good to know</h2>
@@ -107,13 +110,13 @@
       <div class="info-card lang-de">
         <h3>Stadtteile</h3>
         <ul>
-          <li><strong>Centro Storico</strong> — der antike Kern, Kirchen, Chaos</li>
-          <li><strong>Quartieri Spagnoli</strong> — Maradona, Wäsche, Leben</li>
+          <li><strong>Centro Storico</strong> — der antike Kern, Kirchen, Tourismus</li>
+          <li><strong>Quartieri Spagnoli</strong> — Maradona, Spritz, Leben auf der Straße</li>
           <li><strong>Vomero</strong> — oben auf dem Hügel, elegant, beste Aussicht</li>
           <li><strong>Chiaia</strong> — schick, Weinbars, Uferpromenade</li>
           <li><strong>Sanità</strong> — Katakomben, Pasticcerie, am meisten unterschätzt</li>
           <li><strong>Posillipo</strong> — Villen und Badestellen</li>
-          <li><strong>Hafen / Centrale</strong> — Ankunft, Sfogliatelle, Pizza fritta</li>
+          <li><strong>Hafen / Centrale</strong> — Sfogliatelle, Pizza fritta</li>
         </ul>
       </div>
       <div class="info-card lang-en">
