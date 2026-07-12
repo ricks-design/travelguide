@@ -214,10 +214,22 @@ document.getElementById("chips").addEventListener("click", (e) => {
   renderMarkers();
 });
 
-document.getElementById("search").addEventListener("input", (e) => {
-  searchTerm = e.target.value.trim().toLowerCase();
+const searchInput = document.getElementById("search");
+const searchWrap = document.getElementById("search-wrap");
+const searchClear = document.getElementById("search-clear");
+
+function applySearch() {
+  searchTerm = searchInput.value.trim().toLowerCase();
+  searchWrap.classList.toggle("has-value", searchInput.value.length > 0);
   renderCards();
   renderMarkers();
+}
+searchInput.addEventListener("input", applySearch);
+searchInput.addEventListener("search", applySearch); // fires on native clear too
+searchClear.addEventListener("click", () => {
+  searchInput.value = "";
+  searchInput.focus();
+  applySearch();
 });
 
 document.getElementById("lang-toggle").addEventListener("click", () => {

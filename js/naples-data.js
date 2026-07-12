@@ -561,6 +561,7 @@ const PLACES = [
       en: "If you fancy a little excursion, this is very much worth it. Famous from Netflix's \u201cChef's Table\u201d. Book ahead, no exceptions! The creations are extraordinary — starters and desserts are insane. Service was mediocre. The village is tiny and sleepy and basically lives off the restaurant. We stayed overnight back then; next time I'd eat early and head back. Train: EAV line Napoli–Piedimonte Matese from the upper level of Napoli Centrale (ticket office hidden through a side entrance on the right). No evening train back from Caiazzo — take Mimo, the restaurant's personal driver, ~20 min to Caserta for €40, then the €4 train to Naples runs until ~22:35. (Logistics as of my last visit — double-check.)",
     },
     maps: "https://www.google.com/maps/search/?api=1&query=Pepe%20in%20Grani%20Caiazzo&query_place_id=ChIJO9FwdeNZOhMRKp1UBErRQXs",
+    maps2: { label: { de: "Fahrplan EAV (Piedimonte Matese)", en: "EAV timetable (Piedimonte Matese)" }, url: "https://www.eavsrl.it/download/orari-ferrovia-l7-napoli-afragola-av-santa-maria-c-v-piedimonte-in-vigore-dal-6-luglio-al-13-settembre-2026/?wpdmdl=52683&refresh=6a533571c0fa21783838065" },
     lat: 41.17718, lng: 14.36601,
   },
   {
