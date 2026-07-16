@@ -6,18 +6,19 @@
    --line    #24303D  hairlines
    --cream   #EFE9DC  primary text
    --muted   #91A0AE  secondary text
-   --azzurro #5FB2E6  Napoli blue (links, sights)
+   --accent #5FB2E6  Napoli blue (links, sights)
    --amber   #F0A94E  fried gold (pizza, accents)
    ============================================================ */
 
 :root {
   --ink: #001a3a;
+  --ink-rgb: 0, 26, 58;
   --panel: #002a5c;
   --panel-2: #003c82;
   --line: #124a86;
   --cream: #ffffff;
   --muted: #9bb8d8;
-  --azzurro: #12a0d7;
+  --accent: #12a0d7;
   --amber: #12a0d7;
   --c-pizza: #f0a94e;
   --c-street: #ef7f6b;
@@ -48,7 +49,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--azzurro); text-decoration: none; }
+a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--amber);
@@ -72,8 +73,8 @@ a:focus-visible, button:focus-visible {
 .hero-img::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(0,26,58,0.96) 0%, rgba(0,26,58,0.55) 45%, rgba(0,26,58,0.15) 100%),
-    linear-gradient(to right, rgba(0,26,58,0.55) 0%, rgba(0,26,58,0) 60%);
+    linear-gradient(to top, rgba(var(--ink-rgb), 0.96) 0%, rgba(var(--ink-rgb), 0.55) 45%, rgba(var(--ink-rgb), 0.15) 100%),
+    linear-gradient(to right, rgba(var(--ink-rgb), 0.55) 0%, rgba(var(--ink-rgb), 0) 60%);
 }
 .hero-img .hero-content {
   position: relative; z-index: 2;
@@ -93,20 +94,20 @@ a:focus-visible, button:focus-visible {
   margin: 0 0 14px;
   letter-spacing: -0.01em;
 }
-.hero h1 .accent { color: var(--azzurro); }
+.hero h1 .accent { color: var(--accent); }
 .hero .sub { color: var(--muted); max-width: 60ch; margin: 0; }
 .hero .updated { color: var(--muted); font-size: 13px; margin-top: 10px; }
 
 /* scudetto rule: the double stripe under section titles */
 .rule {
   height: 6px; width: 72px; margin: 22px 0 0;
-  background: linear-gradient(to bottom, var(--azzurro) 0 2px, transparent 2px 4px, #ffffff 4px 6px);
+  background: linear-gradient(to bottom, var(--accent) 0 2px, transparent 2px 4px, #ffffff 4px 6px);
 }
 
 /* ---------- sticky filter bar ---------- */
 .bar {
   position: sticky; top: 0; z-index: 500;
-  background: rgba(0, 26, 58, 0.92);
+  background: rgba(var(--ink-rgb), 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
   padding: 10px 0;
@@ -162,7 +163,7 @@ a:focus-visible, button:focus-visible {
   background: var(--panel-2); color: var(--cream);
 }
 .leaflet-popup-content { font-family: var(--font-body); font-size: 13.5px; }
-.leaflet-popup-content a { color: var(--azzurro); }
+.leaflet-popup-content a { color: var(--accent); }
 .leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
 
 /* ---------- cards ---------- */
@@ -207,8 +208,9 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase; border-radius: 4px; padding: 2px 7px;
   margin-left: 6px; vertical-align: 2px; font-family: var(--font-body); font-weight: 600;
 }
-.badge.todo { background: #063363; color: var(--muted); }
+.badge.todo { background: rgba(255,255,255,0.09); color: var(--muted); }
 .badge.closed { background: #4a2530; color: #e89aa8; }
+.badge.closing { background: #4a3a18; color: #f0c980; }
 .card p.desc { color: #cfe0f2; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
 .card .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
 .card .links a::after { content: " ↗"; font-size: 11px; }
@@ -259,7 +261,7 @@ footer a { color: var(--muted); text-decoration: underline; }
   padding: 26px 22px; color: var(--cream);
   transition: border-color .15s, transform .15s;
 }
-.city-card:hover { border-color: var(--azzurro); text-decoration: none; transform: translateY(-2px); }
+.city-card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
 .city-card h2 { font-family: var(--font-display); font-weight: 550; font-size: 30px; margin: 0 0 6px; }
 .city-card p { color: var(--muted); font-size: 14px; margin: 0; }
 .city-card.soon { opacity: 0.45; pointer-events: none; }
@@ -269,7 +271,6 @@ footer a { color: var(--muted); text-decoration: underline; }
 }
 
 @media (max-width: 640px) {
-  .search { margin-left: 0; width: 100%; }
   #map { height: 300px; }
 }
 
@@ -298,11 +299,86 @@ body[data-lang="en"] .lang-de { display: none; }
   font-size: 13px; line-height: 20px; text-align: center; cursor: pointer;
   padding: 0; display: none;
 }
-.search-clear:hover { background: var(--azzurro); color: var(--ink); }
+.search-clear:hover { background: var(--accent); color: var(--ink); }
 .search-wrap.has-value .search-clear { display: block; }
 /* hide the ugly native webkit clear cross, we use our own */
 .search::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
-@media (max-width: 640px) {
-  .search-wrap { margin-left: 0; width: 100%; }
-  .search-wrap .search { width: 100%; }
+
+
+
+/* ============================================================
+   THEME: London — TfL palette
+   Roundel red #E1251B, Underground navy #10069F, white
+   ============================================================ */
+body.theme-london {
+  --ink: #07072b;
+  --ink-rgb: 7, 7, 43;
+  --panel: #131046;
+  --panel-2: #1a1666;
+  --line: #2c2880;
+  --cream: #ffffff;
+  --muted: #a3a6cf;
+  --accent: #e1251b;
+  --c-sights: #00a0e2;
+  --c-night: #e1251b;
+  --c-day: #ffd300;
+  --c-trips: #6bcf97;
+}
+body.theme-london .card p.desc,
+body.theme-london .info-card p,
+body.theme-london .info-card li,
+body.theme-london .info-card td { color: #d3d5ee; }
+
+
+/* ============================================================
+   Compact sticky filter bar on phones
+   One single row: [chips ← scroll →] [search] [lang]
+   Chips scroll horizontally instead of wrapping onto 3 lines.
+   The search collapses to an icon and expands on focus.
+   ============================================================ */
+@media (max-width: 700px) {
+  .bar { padding: 7px 0; }
+  .bar-inner { flex-wrap: nowrap; gap: 6px; align-items: center; }
+
+  /* chips: one scrollable line */
+  .chips {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* fade out the right edge as a scroll affordance */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    font-size: 12.5px;
+    padding: 6px 11px;
+  }
+
+  /* search: icon-sized until focused */
+  .search-wrap {
+    flex: 0 0 auto;
+    width: 34px;
+    transition: width .18s ease;
+  }
+  .search-wrap .search {
+    width: 100%;
+    padding: 6px 8px 6px 28px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2391a0ae' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 8px 50%;
+    background-size: 14px 14px;
+  }
+  .search-wrap:focus-within,
+  .search-wrap.has-value { width: 58%; }
+  .lang-btn { flex: 0 0 auto; padding: 6px 10px; }
+
+  /* map buttons also wrap a lot on small screens */
+  .map-actions { flex-wrap: wrap; }
 }
