@@ -8,8 +8,8 @@ const I18N = {
     countBounds: (a, b) => a + " von " + b + " Orten im Kartenausschnitt",
     search: "Suchen…",
     maps: "Google Maps",
-    todo: "Auf meiner Liste", closed: "Aktuell geschlossen",
-    btnCity: "Auf Neapel zentrieren", btnAll: "Alles anzeigen (inkl. Ausflüge)",
+    todo: "Auf meiner Liste", closed: "Aktuell geschlossen", closing: "Schließt bald",
+    btnCity: (n) => "Auf " + n + " zentrieren", btnAll: "Alles anzeigen (inkl. Ausflüge)",
     btnSync: "Liste folgt Karte",
     openMaps: "In Google Maps öffnen ↗", showEntry: "Eintrag anzeigen ↓",
     toggle: "EN",
@@ -20,22 +20,14 @@ const I18N = {
     countBounds: (a, b) => a + " of " + b + " places in current map view",
     search: "Search…",
     maps: "Google Maps",
-    todo: "On my list", closed: "Currently closed",
-    btnCity: "Center on Naples", btnAll: "Show everything (incl. day trips)",
+    todo: "On my list", closed: "Currently closed", closing: "Closing soon",
+    btnCity: (n) => "Center on " + n, btnAll: "Show everything (incl. day trips)",
     btnSync: "List follows map",
     openMaps: "Open in Google Maps ↗", showEntry: "Show entry ↓",
     toggle: "DE",
   },
 };
 
-const CATS = {
-  pizza:  { label: { de: "Pizza", en: "Pizza" }, color: "var(--c-pizza)", hex: "#f0a94e" },
-  street: { label: { de: "Streetfood & Süßes", en: "Street food & sweets" }, color: "var(--c-street)", hex: "#ef7f6b" },
-  coffee: { label: { de: "Kaffee & Cafés", en: "Coffee & cafés" }, color: "var(--c-coffee)", hex: "#d9c27c" },
-  bars:   { label: { de: "Bars & Wein", en: "Bars & wine" }, color: "var(--c-bars)", hex: "#c96f85" },
-  sights: { label: { de: "Sehenswürdigkeiten", en: "Sights & culture" }, color: "var(--c-sights)", hex: "#5fb2e6" },
-  trips:  { label: { de: "Ausflüge", en: "Day trips" }, color: "var(--c-trips)", hex: "#7fcf9b" },
-};
 
 let lang = location.hash === "#en" ? "en" : "de";
 let activeFilter = "all";
@@ -82,6 +74,7 @@ function renderCards() {
     const star = p.top ? '<span class="star" title="Top pick">★</span> ' : "";
     const todo = p.todo ? '<span class="badge todo">' + t().todo + "</span>" : "";
     const closed = p.closed ? '<span class="badge closed">' + t().closed + "</span>" : "";
+    const closing = p.closing ? '<span class="badge closing">' + t().closing + "</span>" : "";
     const img = p.img
       ? '<img class="photo" loading="lazy" src="images/' + p.img + '" alt="' + esc(p.name) + '">'
       : "";
@@ -95,7 +88,7 @@ function renderCards() {
       '<div class="meta"><span class="catlabel">' + cat.label[lang] + "</span>" +
       (p.area ? "<span>· " + esc(p.area) + "</span>" : "") +
       "</div>" +
-      "<h3>" + star + esc(p.name) + todo + closed + "</h3>" +
+      "<h3>" + star + esc(p.name) + todo + closed + closing + "</h3>" +
       '<p class="desc">' + esc(p.desc[lang]) + "</p>" +
       '<div class="links">' + links + "</div>" +
       "</article>"
@@ -178,7 +171,7 @@ function fitAll() {
 function buildChips() {
   const chips = [
     { key: "all", label: t().all },
-    { key: "top", label: t().top },
+    ...(PLACES.some((p) => p.top) ? [{ key: "top", label: t().top }] : []),
     ...Object.entries(CATS).map(([key, c]) => ({
       key,
       label: '<span class="dot" style="background:' + c.hex + '"></span>' + c.label[lang],
@@ -194,7 +187,7 @@ function applyLang() {
   document.body.dataset.lang = lang;
   document.documentElement.lang = lang;
   document.getElementById("search").placeholder = t().search;
-  document.getElementById("btn-city").textContent = t().btnCity;
+  document.getElementById("btn-city").textContent = t().btnCity(CITY.name[lang]);
   document.getElementById("btn-all").textContent = t().btnAll;
   document.getElementById("btn-sync").textContent = t().btnSync;
   document.getElementById("lang-toggle").textContent = t().toggle;

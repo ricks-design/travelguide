@@ -14,10 +14,19 @@
    ============================================================ */
 
 const CITY = {
-  name: "Napoli",
+  name: { de: "Napoli", en: "Napoli" },
   center: [40.8455, 14.2515],
   zoom: 13,
   updated: { de: "Juli 2026", en: "July 2026" },
+};
+
+const CATS = {
+  pizza:  { label: { de: "Pizza", en: "Pizza" }, color: "var(--c-pizza)", hex: "#f0a94e" },
+  street: { label: { de: "Streetfood & Süßes", en: "Street food & sweets" }, color: "var(--c-street)", hex: "#ef7f6b" },
+  coffee: { label: { de: "Kaffee & Cafés", en: "Coffee & cafés" }, color: "var(--c-coffee)", hex: "#d9c27c" },
+  bars:   { label: { de: "Bars & Wein", en: "Bars & wine" }, color: "var(--c-bars)", hex: "#c96f85" },
+  sights: { label: { de: "Sehenswürdigkeiten", en: "Sights & culture" }, color: "var(--c-sights)", hex: "#12a0d7" },
+  trips:  { label: { de: "Ausflüge", en: "Day trips" }, color: "var(--c-trips)", hex: "#7fcf9b" },
 };
 
 const PLACES = [
