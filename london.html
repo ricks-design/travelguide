@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London — City Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-lang="de" class="theme-london">
+
+<header class="hero hero-img">
+  <!-- Foto: images/hero-london.jpg ablegen (Querformat, ~1800px breit).
+       Fehlt das Bild, fällt der Header automatisch auf die dunkle Variante zurück. -->
+  <img class="hero-bg" src="images/hero-london.jpg" alt=""
+       onerror="this.closest('header').classList.remove('hero-img'); this.remove();">
+  <div class="hero-content wrap">
+    <p class="eyebrow"><a href="index.html" style="color:inherit">City Notes</a></p>
+    <h1>Lon<span class="accent">don</span></h1>
+    <p class="sub lang-de">Sehenswürdigkeiten, Ausgehen, Tagsüber, Ausflüge. Öffnungszeiten und Preise ändern sich schnell — vor dem Losgehen den Maps-Link checken.</p>
+    <p class="sub lang-en">Sights, going out, daytime, day trips. Opening hours and prices change fast — check the Maps link before heading out.</p>
+    <p class="updated lang-de">Stand: Juli 2026 • <a href="#info">gut zu wissen ↓</a></p>
+    <p class="updated lang-en">Last updated: July 2026 • <a href="#info">good to know ↓</a></p>
+    <div class="rule" aria-hidden="true"></div>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Filter">
+  <div class="wrap bar-inner">
+    <div class="chips" id="chips"></div>
+    <span class="search-wrap" id="search-wrap">
+      <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+      <button class="search-clear" id="search-clear" type="button" aria-label="Suche löschen">✕</button>
+    </span>
+    <button class="chip lang-btn" id="lang-toggle" aria-label="Sprache wechseln">EN</button>
+  </div>
+</nav>
+
+<section class="map-section wrap" aria-label="Karte">
+  <div id="map"></div>
+  <div class="map-actions">
+    <button class="map-btn" id="btn-city">Auf London zentrieren</button>
+    <button class="map-btn" id="btn-all">Alles anzeigen</button>
+    <button class="map-btn" id="btn-sync" aria-pressed="true">Liste folgt Karte</button>
+  </div>
+</section>
+
+<section class="grid-section wrap">
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="info-section" id="info">
+  <div class="wrap">
+    <h2 class="lang-de">Gut zu wissen</h2>
+    <h2 class="lang-en">Good to know</h2>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="info-grid">
+
+      <div class="info-card lang-de">
+        <h3>Time Out</h3>
+        <p>Das Gratisheft, das es früher mittwochs in der Underground gab, ist Geschichte: Nach 54 Jahren wurde die Londoner Printausgabe am 23. Juni 2022 zum letzten Mal verteilt. Time Out erscheint seitdem nur noch online — Listings, Restaurantkritiken und Veranstaltungen laufen über die Website und den Newsletter.</p>
+        <p><a href="https://www.timeout.com/london" target="_blank" rel="noopener">timeout.com/london ↗</a></p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Time Out</h3>
+        <p>The free magazine handed out in the Underground on Wednesdays is gone: after 54 years the London print edition was distributed for the last time on 23 June 2022. Time Out has been online-only since — listings, restaurant reviews and events all run through the website and newsletter.</p>
+        <p><a href="https://www.timeout.com/london" target="_blank" rel="noopener">timeout.com/london ↗</a></p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Essen finden</h3>
+        <p>Topjaw für Restaurant-Empfehlungen: zwei Londoner, die Leute nach ihren Lieblingsläden fragen und daraus kurze Videos machen. Verlässlicher als die meisten Listicles.</p>
+        <p><a href="https://www.instagram.com/topjaw" target="_blank" rel="noopener">@topjaw auf Instagram ↗</a></p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Finding food</h3>
+        <p>Topjaw for restaurant recommendations: two Londoners who ask people for their favourite spots and turn it into short videos. More reliable than most listicles.</p>
+        <p><a href="https://www.instagram.com/topjaw" target="_blank" rel="noopener">@topjaw on Instagram ↗</a></p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Fahren &amp; Zahlen</h3>
+        <p>Kontaktlose Kredit-/Debitkarte oder Handy funktioniert überall dort, wo Oyster funktioniert — eine eigene Oyster Card braucht man als Besucher nicht mehr. Einfach ein- und auschecken, das Tages- und Wochenlimit greift automatisch.</p>
+        <p>Achtung beim Boot: Oyster/kontaktlos gilt nur bei Uber Boat by Thames Clippers (westlich bis Putney). Die saisonalen Boote nach Kew, Richmond und Hampton Court sind ein anderer Betreiber mit eigenen Tickets — und das TfL-Tageslimit gilt auf dem Wasser generell nicht.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Getting around</h3>
+        <p>A contactless credit/debit card or phone works everywhere Oyster does — as a visitor you no longer need an actual Oyster card. Just touch in and out; daily and weekly capping applies automatically.</p>
+        <p>Careful with boats: Oyster/contactless only works on Uber Boat by Thames Clippers (west as far as Putney). The seasonal boats to Kew, Richmond and Hampton Court are a different operator with their own tickets — and the TfL daily cap never applies on the river.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Umsonst</h3>
+        <ul>
+          <li>Wallace Collection, Kenwood House, Tate Modern (Sammlung + Level 10), White Cube — alle ohne Eintritt</li>
+          <li>Extra kosten nur Sonderausstellungen und Lift 109 in Battersea</li>
+          <li>Hampstead Heath, Primrose Hill, Regent's Canal sowieso</li>
+        </ul>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Free</h3>
+        <ul>
+          <li>Wallace Collection, Kenwood House, Tate Modern (collection + Level 10), White Cube — all free</li>
+          <li>Only temporary exhibitions and Lift 109 at Battersea cost extra</li>
+          <li>Hampstead Heath, Primrose Hill and Regent's Canal anyway</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="lang-de">Die meisten Tipps hier stammen von Niklas. <a href="index.html">← Alle Städte</a></p>
+    <p class="lang-en">Most of the tips here come from Niklas. <a href="index.html">← All cities</a></p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/london-data.js"></script>
+<script src="js/guide.js"></script>
+</body>
+</html>
