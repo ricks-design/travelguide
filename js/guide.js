@@ -112,12 +112,22 @@ window.focusCard = focusCard;
 
 /* ---------- map ---------- */
 function initMap() {
+  if (typeof L === "undefined") {
+    // Leaflet unavailable (offline, blocked CDN, sandboxed preview).
+    // Degrade gracefully: hide the map, keep the full list usable.
+    const sec = document.querySelector(".map-section");
+    if (sec) sec.style.display = "none";
+    syncWithMap = false;
+    renderCards();
+    return;
+  }
   map = L.map("map", { scrollWheelZoom: false }).setView(CITY.center, CITY.zoom);
   L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     maxZoom: 19,
   }).addTo(map);
+  L.Icon.Default.imagePath = "vendor/images/";
   markerLayer = L.layerGroup().addTo(map);
   renderMarkers();
 
@@ -236,5 +246,12 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
 });
 
 applyLang();
-initMap();
-renderCards(); // re-render once map exists so the bounds filter applies
+try {
+  initMap();
+} catch (err) {
+  console.error("Map failed to initialise:", err);
+  const sec = document.querySelector(".map-section");
+  if (sec) sec.style.display = "none";
+  syncWithMap = false;
+}
+renderCards(); // re-render once the map exists so the bounds filter applies
