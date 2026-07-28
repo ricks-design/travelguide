@@ -361,6 +361,19 @@ body.theme-london {
   --c-trips: #6bcf97;  /* District-ish green */
 }
 
+/* ============================================================
+   THEME: Barcelona — trencadís (mosaic tile) accent on the shared
+   anthracite base. First city built directly in the new colour
+   system: neutral background, accent reserved for headers/links/chips.
+   ============================================================ */
+body.theme-barcelona {
+  --accent: #0e9aa7;   /* trencadís teal */
+  --c-sights: #0e9aa7; /* teal */
+  --c-food: #e8763c;   /* terracotta / paprika */
+  --c-night: #c9427d;  /* mosaic pink/magenta */
+  --c-day: #f0b429;    /* Parc Güell mustard yellow */
+}
+
 
 /* ============================================================
    Compact sticky filter bar on phones (Solution B)
