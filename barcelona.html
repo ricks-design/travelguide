@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barcelona — City Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-lang="de" class="theme-barcelona">
+
+<header class="hero hero-img">
+  <!-- Foto: images/hero-barcelona.jpg ablegen (Querformat, ~1800px breit).
+       Fehlt das Bild, fällt der Header automatisch auf die dunkle Variante zurück. -->
+  <img class="hero-bg" src="images/hero-barcelona.jpg" alt=""
+       onerror="this.closest('header').classList.remove('hero-img'); this.remove();">
+  <div class="hero-content wrap">
+    <p class="eyebrow"><a href="index.html" style="color:inherit">City Notes</a></p>
+    <h1>Barce<span class="accent">lona</span></h1>
+    <p class="sub lang-de">Sehenswürdigkeiten, Essen, Ausgehen, Tagsüber. Die meisten Tipps von Marc und Katharina.</p>
+    <p class="sub lang-en">Sights, food, going out, daytime. Most tips from Marc and Katharina.</p>
+    <p class="updated lang-de">Stand: Juli 2026 • <a href="#info">gut zu wissen ↓</a></p>
+    <p class="updated lang-en">Last updated: July 2026 • <a href="#info">good to know ↓</a></p>
+    <div class="rule" aria-hidden="true"></div>
+  </div>
+  <button class="hero-lang-btn" id="lang-toggle" aria-label="Sprache wechseln">EN</button>
+</header>
+
+<nav class="bar" aria-label="Filter">
+  <div class="wrap bar-inner">
+    <div class="chips" id="chips"></div>
+    <button class="search-toggle" id="search-toggle" aria-label="Suche öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+    </button>
+    <span class="search-wrap" id="search-wrap">
+      <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+      <button class="search-clear" id="search-clear" type="button" aria-label="Suche löschen">✕</button>
+    </span>
+  </div>
+</nav>
+
+<section class="map-section wrap" aria-label="Karte">
+  <div id="map"></div>
+  <div class="map-actions">
+    <button class="map-btn" id="btn-city">Auf Barcelona zentrieren</button>
+    <button class="map-btn" id="btn-all">Alles anzeigen</button>
+    <button class="map-btn" id="btn-sync" aria-pressed="true">Liste folgt Karte</button>
+  </div>
+</section>
+
+<section class="grid-section wrap">
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="info-section" id="info">
+  <div class="wrap">
+    <h2 class="lang-de">Gut zu wissen</h2>
+    <h2 class="lang-en">Good to know</h2>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="info-grid">
+
+      <div class="info-card lang-de">
+        <h3>Fahren</h3>
+        <p>Beste Option ist das T-casual-Ticket: 10 Fahrten mit Metro/Bus/Zug/Tram für 11,35€, an den Automaten in den Metrostationen erhältlich.</p>
+        <p>Vom Flughafen: am schnellsten, aber teuerster ist der Aerobus, alle paar Minuten ab Terminal 1 und 2, 5,90€ pro Fahrt, hält an Plaça Espanya und Plaça Catalunya. Ab T2 fährt außerdem alle 30 Minuten ein Zug, der im T10-Ticketpreis inbegriffen ist, bis Sants Estació oder Passeig de Gràcia.</p>
+        <p>Zur Orientierung funktioniert Google Maps gut, alternativ die App Citymapper.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Getting around</h3>
+        <p>Best ticket option is the T-casual: 10 journeys on metro/bus/train/tram for €11.35, available from the machines at metro stations.</p>
+        <p>From the airport: fastest but priciest is the Aerobus, every few minutes from Terminal 1 and 2, €5.90 per ride, stops at Plaça Espanya and Plaça Catalunya. From T2 there's also a train every 30 minutes included in the T10 ticket price, to Sants Estació or Passeig de Gràcia.</p>
+        <p>Google Maps works fine to get around, or the app Citymapper.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Vorsicht: Taschendiebstahl</h3>
+        <p>Ein echtes Problem in Barcelona. Immer auf die eigenen Sachen aufpassen, nicht betrunken in der Metro einschlafen und bei verdächtigen Typen nicht auf Blödsinn einlassen.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Careful: pickpocketing</h3>
+        <p>A real problem in Barcelona. Keep an eye on your belongings at all times, don't fall asleep drunk on the metro, and don't get drawn into anything with people who seem suspicious.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Clubs</h3>
+        <p>Hängt stark von der Musik ab, die man hören will. Unsere Favoriten: montags Jamboree, mittwochs Razzmatazz, am Wochenende La Fira bei Reggaeton-Laune. Es gibt aber noch viele mehr. Die Beach Clubs (Opium, Shoko, Pacha) eher meiden.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Clubs</h3>
+        <p>Really depends on the music you're after. Our favourites: Jamboree on Mondays, Razzmatazz on Wednesdays, La Fira at weekends if you're in a reggaeton mood. There are plenty more, though. Best to avoid the beach clubs (Opium, Shoko, Pacha).</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="lang-de">Die meisten Tipps hier stammen von Marc und Katharina. <a href="index.html">← Alle Städte</a></p>
+    <p class="lang-en">Most of the tips here come from Marc and Katharina. <a href="index.html">← All cities</a></p>
+  </div>
+</footer>
+
+<script src="vendor/leaflet.js"></script>
+<script src="js/barcelona-data.js"></script>
+<script src="js/guide.js"></script>
+</body>
+</html>
