@@ -1,23 +1,24 @@
 /* ============================================================
    City Notes — stylesheet
-   Palette: Naples at night
-   --ink     #0D131A  deep night blue-black
-   --panel   #151E28  card surface
-   --line    #24303D  hairlines
-   --cream   #EFE9DC  primary text
-   --muted   #91A0AE  secondary text
-   --accent #5FB2E6  Napoli blue (links, sights)
-   --amber   #F0A94E  fried gold (pizza, accents)
+   Neutral anthracite base; each city sets one --accent colour.
+   --ink     #131313  page background (anthracite)
+   --panel   #1C1C1C  card surface
+   --panel-2 #232323  raised surface (popups)
+   --line    #2E2E2E  hairlines
+   --cream   #ECECEC  primary text
+   --muted   #9A9A9A  secondary text
+   --accent  (per city) links, active chip, H1 accent, rule
    ============================================================ */
 
 :root {
-  --ink: #001a3a;
-  --ink-rgb: 0, 26, 58;
-  --panel: #002a5c;
-  --panel-2: #003c82;
-  --line: #124a86;
-  --cream: #ffffff;
-  --muted: #9bb8d8;
+  --ink: #131313;
+  --ink-rgb: 19, 19, 19;
+  --panel: #1c1c1c;
+  --panel-2: #232323;
+  --line: #2e2e2e;
+  --cream: #ececec;
+  --muted: #9a9a9a;
+  /* Naples accent + category colours (default theme) */
   --accent: #12a0d7;
   --amber: #12a0d7;
   --c-pizza: #f0a94e;
@@ -81,7 +82,7 @@ a:focus-visible, button:focus-visible {
   padding: 150px 24px 34px;
   text-shadow: 0 1px 14px rgba(0,0,0,0.55);
 }
-.hero-img .sub, .hero-img .updated { color: #e6f0fa; }
+.hero-img .sub, .hero-img .updated { color: #dcdcdc; }
 .hero .eyebrow {
   font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--amber); margin: 0 0 10px;
@@ -211,7 +212,7 @@ a:focus-visible, button:focus-visible {
 .badge.todo { background: rgba(255,255,255,0.09); color: var(--muted); }
 .badge.closed { background: #4a2530; color: #e89aa8; }
 .badge.closing { background: #4a3a18; color: #f0c980; }
-.card p.desc { color: #cfe0f2; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
+.card p.desc { color: #c9c9c9; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
 .card .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
 .card .links a::after { content: " ↗"; font-size: 11px; }
 
@@ -233,12 +234,12 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-display); font-weight: 550;
   font-size: 19px; margin: 0 0 10px; color: var(--amber);
 }
-.info-card p, .info-card li { color: #cfe0f2; font-size: 14.5px; }
+.info-card p, .info-card li { color: #c9c9c9; font-size: 14.5px; }
 .info-card p { margin: 0 0 10px; }
 .info-card ul { margin: 0; padding-left: 18px; }
 .info-card li { margin-bottom: 6px; }
 .info-card table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.info-card td { padding: 5px 0; border-bottom: 1px solid var(--line); color: #cfe0f2; }
+.info-card td { padding: 5px 0; border-bottom: 1px solid var(--line); color: #c9c9c9; }
 .info-card td:last-child { text-align: right; white-space: nowrap; color: var(--cream); }
 .info-card tr:last-child td { border-bottom: none; }
 
@@ -307,27 +308,17 @@ body[data-lang="en"] .lang-de { display: none; }
 
 
 /* ============================================================
-   THEME: London — TfL palette
-   Roundel red #E1251B, Underground navy #10069F, white
+   THEME: London — TfL accent on the shared anthracite base.
+   Only the accent + category colours change; background stays neutral.
    ============================================================ */
 body.theme-london {
-  --ink: #07072b;
-  --ink-rgb: 7, 7, 43;
-  --panel: #131046;
-  --panel-2: #1a1666;
-  --line: #2c2880;
-  --cream: #ffffff;
-  --muted: #a3a6cf;
-  --accent: #e1251b;
-  --c-sights: #00a0e2;
-  --c-night: #e1251b;
-  --c-day: #ffd300;
-  --c-trips: #6bcf97;
+  --accent: #e1251b;   /* TfL roundel red */
+  --c-sights: #00a0e2; /* Victoria/Piccadilly blue */
+  --c-food: #f4a13c;   /* warm amber, distinct from the red/yellow */
+  --c-night: #e1251b;  /* Central red */
+  --c-day: #ffd300;    /* Circle yellow */
+  --c-trips: #6bcf97;  /* District-ish green */
 }
-body.theme-london .card p.desc,
-body.theme-london .info-card p,
-body.theme-london .info-card li,
-body.theme-london .info-card td { color: #d3d5ee; }
 
 
 /* ============================================================
@@ -361,7 +352,8 @@ body.theme-london .info-card td { color: #d3d5ee; }
     padding: 6px 11px;
   }
 
-  /* search: icon-sized until focused */
+  /* search: icon-sized until focused. Fixed widths (not %) so the
+     language button always keeps its place and never gets clipped. */
   .search-wrap {
     flex: 0 0 auto;
     width: 34px;
@@ -370,13 +362,18 @@ body.theme-london .info-card td { color: #d3d5ee; }
   .search-wrap .search {
     width: 100%;
     padding: 6px 8px 6px 28px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2391a0ae' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.6-3.6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: 8px 50%;
     background-size: 14px 14px;
   }
+  /* When the search expands it takes priority over the chips (which can
+     scroll), but is capped so the lang button always stays on screen. */
   .search-wrap:focus-within,
-  .search-wrap.has-value { width: 58%; }
+  .search-wrap.has-value {
+    width: min(200px, calc(100vw - 130px));
+  }
+  .search-wrap:focus-within { flex-shrink: 0; }
   .lang-btn { flex: 0 0 auto; padding: 6px 10px; }
 
   /* map buttons also wrap a lot on small screens */
