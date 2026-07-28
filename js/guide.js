@@ -220,6 +220,8 @@ document.getElementById("chips").addEventListener("click", (e) => {
 const searchInput = document.getElementById("search");
 const searchWrap = document.getElementById("search-wrap");
 const searchClear = document.getElementById("search-clear");
+const searchToggle = document.getElementById("search-toggle");
+const barInner = document.querySelector(".bar-inner");
 
 function applySearch() {
   searchTerm = searchInput.value.trim().toLowerCase();
@@ -231,8 +233,31 @@ searchInput.addEventListener("input", applySearch);
 searchInput.addEventListener("search", applySearch); // fires on native clear too
 searchClear.addEventListener("click", () => {
   searchInput.value = "";
-  searchInput.focus();
   applySearch();
+  searchInput.focus();
+});
+
+/* Mobile "Solution B": the magnifier icon opens a second row with the full
+   search field instead of the field expanding inline (which used to squeeze
+   other controls off screen). Desktop is unaffected — search-toggle is
+   hidden there via CSS and the search field is always visible inline. */
+function openMobileSearch() {
+  barInner.classList.add("search-open");
+  searchToggle.classList.add("active");
+  searchToggle.setAttribute("aria-expanded", "true");
+  searchInput.focus();
+}
+function closeMobileSearch() {
+  barInner.classList.remove("search-open");
+  searchToggle.classList.remove("active");
+  searchToggle.setAttribute("aria-expanded", "false");
+}
+searchToggle.addEventListener("click", () => {
+  if (barInner.classList.contains("search-open")) {
+    closeMobileSearch();
+  } else {
+    openMobileSearch();
+  }
 });
 
 document.getElementById("lang-toggle").addEventListener("click", () => {
