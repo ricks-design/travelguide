@@ -13,12 +13,26 @@ const CITY = {
 
 const CATS = {
   sights: { label: { de: "Sehenswürdigkeiten", en: "Sights" }, color: "var(--c-sights)", hex: "#00a0e2" },
+  food:   { label: { de: "Essen", en: "Food" }, color: "var(--c-food)", hex: "#f4a13c" },
   night:  { label: { de: "Ausgehen", en: "Going out" }, color: "var(--c-night)", hex: "#e1251b" },
   day:    { label: { de: "Tagsüber", en: "Daytime" }, color: "var(--c-day)", hex: "#ffd300" },
   trips:  { label: { de: "Aktiv & Ausflüge", en: "Active & day trips" }, color: "var(--c-trips)", hex: "#6bcf97" },
 };
 
 const PLACES = [
+  /* ---------------- FOOD ---------------- */
+  {
+    name: "50 Kalò di Ciro Salvo",
+    cat: "food", area: "Trafalgar Square / Northumberland Ave",
+    desc: {
+      de: "Der Londoner Ableger von Ciro Salvos neapolitanischer Pizzeria — dasselbe 50 Kalò, das in Neapel auf dieser Liste steht (dort in Mergellina). Hoch hydrierter, lang gereifter Teig, in Neapel 2014 eröffnet, London 2018. Marmorsäulen-Saal südlich vom Trafalgar Square, wenige Minuten von Charing Cross/Embankment. Täglich 12–23:30 Uhr (Fr/Sa bis 24 Uhr); am Wochenende vorher reservieren.",
+      en: "The London outpost of Ciro Salvo's Neapolitan pizzeria — the same 50 Kalò that's on this list in Naples (there in Mergellina). Highly hydrated, long-fermented dough; opened in Naples in 2014, London in 2018. Marble-columned room just south of Trafalgar Square, a few minutes from Charing Cross/Embankment. Daily 12–11:30pm (Fri/Sat to midnight); book ahead at weekends.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=50%20Kal%C3%B2%20di%20Ciro%20Salvo%20London&query_place_id=ChIJ76-IInUFdkgR5bH-0ABH0Zo",
+    maps2: { label: { de: "→ 50 Kalò in Neapel", en: "→ 50 Kalò in Naples" }, url: "naples.html#place=50-kal" },
+    lat: 51.50713, lng: -0.12649,
+  },
+
   /* ---------------- SIGHTS ---------------- */
   {
     name: "Wallace Collection",

@@ -29,7 +29,7 @@ const I18N = {
 };
 
 
-let lang = location.hash === "#en" ? "en" : "de";
+let lang = /(^|[#&])en\b/.test(location.hash) ? "en" : "de";
 let activeFilter = "all";
 let searchTerm = "";
 let syncWithMap = true;   // list shows only places inside the current map view
@@ -255,3 +255,17 @@ try {
   syncWithMap = false;
 }
 renderCards(); // re-render once the map exists so the bounds filter applies
+
+/* Deep link: another page can link here with #place=<slug> (e.g. the
+   cross-reference from London's 50 Kalò to the Naples one). Turn off the
+   map-bounds filter so the target is guaranteed to be in the list, then
+   scroll to it and flash it. */
+(function handleDeepLink() {
+  const m = location.hash.match(/place=([a-z0-9-]+)/i);
+  if (!m) return;
+  syncWithMap = false;
+  const syncBtn = document.getElementById("btn-sync");
+  if (syncBtn) { syncBtn.classList.remove("active"); syncBtn.setAttribute("aria-pressed", "false"); }
+  renderCards();
+  requestAnimationFrame(() => focusCard(m[1]));
+})();
