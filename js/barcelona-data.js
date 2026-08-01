@@ -17,6 +17,7 @@ const CATS = {
   food:   { label: { de: "Essen", en: "Food" }, color: "var(--c-food)", hex: "#E8763C" },
   night:  { label: { de: "Ausgehen", en: "Going out" }, color: "var(--c-night)", hex: "#C9427D" },
   day:    { label: { de: "Tagsüber", en: "Daytime" }, color: "var(--c-day)", hex: "#F0B429" },
+  trips:  { label: { de: "Ausflüge", en: "Day trips" }, color: "var(--c-trips)", hex: "#7FCF9B" },
 };
 
 const PLACES = [
@@ -143,6 +144,16 @@ const PLACES = [
     maps2: { label: { de: "Arc de Triomf", en: "Arc de Triomf" }, url: "https://www.google.com/maps/search/?api=1&query=Arc%20de%20Triomf&query_place_id=ChIJoXZqNuOipBIRsZU39a8r_qk" },
     lat: 41.388123, lng: 2.1860152,
   },
+  {
+    name: "Tibidabo",
+    cat: "sights", area: "Sarrià-Sant Gervasi",
+    desc: {
+      de: "Hausberg im Nordwesten der Stadt mit Vergnügungspark und Sühnetempel obendrauf, per Zug + historischer Straßenbahn/Standseilbahn erreichbar. Weitester Blick über Barcelona, den man bekommen kann.",
+      en: "The mountain on the city's northwest edge, with an amusement park and a basilica on top, reached by train plus the old tram/funicular. The widest view you'll get over Barcelona.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Tibidabo&query_place_id=ChIJRdvzz4mXpBIRYypOS8brkts",
+    lat: 41.4225, lng: 2.118611,
+  },
   /* ---------------- FOOD ---------------- */
   {
     name: "Raspall",
@@ -248,8 +259,8 @@ const PLACES = [
     name: "Restaurant Barra Alta",
     cat: "food", area: "Sarrià-Sant Gervasi", top: true,
     desc: {
-      de: "Aktuell unser Top-Favorit in Barcelona.",
-      en: "Our current top favourite in Barcelona.",
+      de: "Aktuell unser Top-Favorit in Barcelona — etwas feiner, das Jakobsmuscheltartar ist unfassbar lecker.",
+      en: "Our current top favourite in Barcelona — a bit more refined, the scallop tartare is unbelievably good.",
     },
     maps: "https://www.google.com/maps/search/?api=1&query=Restaurant%20Barra%20Alta&query_place_id=ChIJ9c5JxpiipBIRmzY14q5u2pQ",
     lat: 41.399738, lng: 2.1505804,
@@ -264,76 +275,75 @@ const PLACES = [
     maps: "https://www.google.com/maps/search/?api=1&query=La%20Maroteca&query_place_id=ChIJQR2BJIyipBIR5DWQRXQcr74",
     lat: 41.3977263, lng: 2.1678422,
   },
-  /* ---------------- DAYTIME / CAFÉS ---------------- */
   {
-    name: "Les Filles Cafè",
-    cat: "day", area: "Gràcia",
+    name: "Rosa Negra (Laietana)",
+    cat: "food", area: "Ciutat Vella",
     desc: {
-      de: "Schöner Ort zum Draußensitzen für einen Drink und etwas zu essen.",
-      en: "Cute place to sit outside for a drink and something to eat.",
+      de: "Mexikanisches Restaurant an der Via Laietana.",
+      en: "Mexican restaurant on Via Laietana.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=Les%20Filles%20Caf%C3%A8&query_place_id=ChIJ0bCOuTmjpBIRUZIl4kNA7QI",
-    lat: 41.396173, lng: 2.1568832,
+    maps: "https://www.google.com/maps/search/?api=1&query=Rosa%20Negra%20%28Laietana%29&query_place_id=ChIJv6nmFvqipBIRhK65nVKPSlw",
+    lat: 41.3865044, lng: 2.1756469,
   },
   {
-    name: "LA PAPA",
-    cat: "day", area: "Eixample",
+    name: "La Tasqueta de Blai",
+    cat: "food", area: "Poble-sec",
     desc: {
-      de: "Brunch.",
-      en: "Brunch.",
+      de: "Carrer de Blai in Poble-sec ist die Pintxos-Straße der Stadt, dieser Laden gilt dort als einer der besten. Prinzip wie in San Sebastián: Teller nehmen, sich vom Tresen bedienen, am Ende werden die Spieße gezählt.",
+      en: "Carrer de Blai in Poble-sec is the city's pintxos street, and this place is considered one of the best on it. Same system as in San Sebastián: grab a plate, help yourself at the counter, they count the skewers at the end.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=LA%20PAPA&query_place_id=ChIJnSeRvgWjpBIRRcG2xbaFLJ4",
-    lat: 41.3898631, lng: 2.1577026,
+    maps: "https://www.google.com/maps/search/?api=1&query=La%20Tasqueta%20de%20Blai&query_place_id=ChIJ4Ruxd12ipBIR-DkqG6wqVGQ",
+    lat: 41.3732437, lng: 2.1654207,
   },
   {
-    name: "Alsur Café & Backdoor Bar",
-    cat: "day", area: "El Born",
+    name: "Sophie",
+    cat: "food", area: "El Born",
     desc: {
-      de: "Brunch, es gibt mehrere Filialen in der Stadt.",
-      en: "Brunch, there are several branches around the city.",
+      de: "Die besten Tapas, die wir in Barcelona gegessen haben.",
+      en: "The best tapas we've had in Barcelona.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=Alsur%20Caf%C3%A9%20%26%20Backdoor%20Bar&query_place_id=ChIJPxs7HAKjpBIRCRTnJUtQEro",
-    lat: 41.3857357, lng: 2.1852047,
+    maps: "https://www.google.com/maps/search/?api=1&query=Sophie&query_place_id=ChIJvc9hHJqjpBIRVz8fu9R8u1I",
+    lat: 41.3895616, lng: 2.1798551,
   },
   {
-    name: "Billy Brunch",
-    cat: "day", area: "Eixample",
+    name: "Lluritu 2",
+    cat: "food", area: "Gràcia",
     desc: {
-      de: "Brunch.",
-      en: "Brunch.",
+      de: "Fisch, Meeresfrüchte und Tapas — einer unserer aktuellen Favoriten in der Nachbarschaft.",
+      en: "Fish, seafood and tapas — one of our current neighbourhood favourites.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=Billy%20Brunch&query_place_id=ChIJ67TY2euipBIRhKOwdXPxwyQ",
-    lat: 41.3976991, lng: 2.1693767,
+    maps: "https://www.google.com/maps/search/?api=1&query=Lluritu%202&query_place_id=ChIJJUDOpWejpBIR_vmjZWgT1Rs",
+    lat: 41.4022966, lng: 2.1562364,
   },
   {
-    name: "Picnic",
-    cat: "day", area: "El Born",
+    name: "La Fonda Pirenaica",
+    cat: "food", area: "Gràcia",
     desc: {
-      de: "Brunch.",
-      en: "Brunch.",
+      de: "Tapas, das Original neben dem neueren Ableger La Brasa de Pirenaicas gleich nebenan — einer unserer aktuellen Favoriten.",
+      en: "Tapas, the original next to its newer sibling La Brasa de Pirenaicas right next door — one of our current favourites.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=Picnic&query_place_id=ChIJiZq-5PyipBIRfK3u0YJJQHE",
-    lat: 41.3886029, lng: 2.181611,
+    maps: "https://www.google.com/maps/search/?api=1&query=La%20Fonda%20Pirenaica&query_place_id=ChIJ67qmBACjpBIR5T7kUOzDu1g",
+    lat: 41.4023884, lng: 2.1573166,
   },
   {
-    name: "Delacreme",
-    cat: "day", area: "Eixample",
+    name: "Glug",
+    cat: "food", area: "Eixample",
     desc: {
-      de: "Eis.",
-      en: "Ice cream.",
+      de: "Katalanisch-italienische Küche zum Teilen, große Weinauswahl, Bib Gourmand.",
+      en: "Catalan-Italian sharing plates, big wine list, Bib Gourmand.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=Delacreme&query_place_id=ChIJ3TMuUYyipBIRr5QWiKg3WQA",
-    lat: 41.3879027, lng: 2.1619416,
+    maps: "https://www.google.com/maps/search/?api=1&query=Glug&query_place_id=ChIJP1F0JgCjpBIRtOimmX8JjJo",
+    lat: 41.3883248, lng: 2.1456521,
   },
   {
-    name: "COOKONA",
-    cat: "day", area: "Eixample",
+    name: "Oníric",
+    cat: "food", area: "Gràcia",
     desc: {
-      de: "Cookie-Laden, lecker aber sehr süß.",
-      en: "Cookie shop, delicious but very sweet.",
+      de: "Modern-katalanisches Degustationsmenü, familiär geführt.",
+      en: "Modern Catalan tasting menu, family-run.",
     },
-    maps: "https://www.google.com/maps/search/?api=1&query=COOKONA&query_place_id=ChIJ33YwAZCipBIRcuiQ3iaya-E",
-    lat: 41.391378, lng: 2.155046,
+    maps: "https://www.google.com/maps/search/?api=1&query=On%C3%ADric&query_place_id=ChIJNcaqanyjpBIRso8hWh7L3tE",
+    lat: 41.4078948, lng: 2.1577474,
   },
   /* ---------------- GOING OUT ---------------- */
   {
@@ -425,5 +435,137 @@ const PLACES = [
     },
     maps: "https://www.google.com/maps/search/?api=1&query=La%20Fira&query_place_id=ChIJi18F3JyipBIRig68MpDAcCU",
     lat: 41.3922112, lng: 2.1478253,
+  },
+  {
+    name: "Monk Barcelona",
+    cat: "night", area: "El Born",
+    desc: {
+      de: "Cocktailbar hinter der Fassade eines Tante-Emma-Ladens versteckt, unten DJ.",
+      en: "Cocktail bar hidden behind the façade of a corner shop, DJ downstairs.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Monk%20Barcelona&query_place_id=ChIJKRmHQ46jpBIRoX7IpueOC0k",
+    lat: 41.3831761, lng: 2.1812542,
+  },
+  /* ---------------- DAYTIME / CAFÉS ---------------- */
+  {
+    name: "Les Filles Cafè",
+    cat: "day", area: "Gràcia",
+    desc: {
+      de: "Schöner Ort zum Draußensitzen für einen Drink und etwas zu essen.",
+      en: "Cute place to sit outside for a drink and something to eat.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Les%20Filles%20Caf%C3%A8&query_place_id=ChIJ0bCOuTmjpBIRUZIl4kNA7QI",
+    lat: 41.396173, lng: 2.1568832,
+  },
+  {
+    name: "LA PAPA",
+    cat: "day", area: "Eixample",
+    desc: {
+      de: "Brunch.",
+      en: "Brunch.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=LA%20PAPA&query_place_id=ChIJnSeRvgWjpBIRRcG2xbaFLJ4",
+    lat: 41.3898631, lng: 2.1577026,
+  },
+  {
+    name: "Alsur Café & Backdoor Bar",
+    cat: "day", area: "El Born",
+    desc: {
+      de: "Brunch, es gibt mehrere Filialen in der Stadt.",
+      en: "Brunch, there are several branches around the city.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Alsur%20Caf%C3%A9%20%26%20Backdoor%20Bar&query_place_id=ChIJPxs7HAKjpBIRCRTnJUtQEro",
+    lat: 41.3857357, lng: 2.1852047,
+  },
+  {
+    name: "Billy Brunch",
+    cat: "day", area: "Eixample",
+    desc: {
+      de: "Brunch.",
+      en: "Brunch.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Billy%20Brunch&query_place_id=ChIJ67TY2euipBIRhKOwdXPxwyQ",
+    lat: 41.3976991, lng: 2.1693767,
+  },
+  {
+    name: "Picnic",
+    cat: "day", area: "El Born",
+    desc: {
+      de: "Brunch.",
+      en: "Brunch.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Picnic&query_place_id=ChIJiZq-5PyipBIRfK3u0YJJQHE",
+    lat: 41.3886029, lng: 2.181611,
+  },
+  {
+    name: "Delacreme",
+    cat: "day", area: "Eixample",
+    desc: {
+      de: "Eis.",
+      en: "Ice cream.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Delacreme&query_place_id=ChIJ3TMuUYyipBIRr5QWiKg3WQA",
+    lat: 41.3879027, lng: 2.1619416,
+  },
+  {
+    name: "COOKONA",
+    cat: "day", area: "Eixample",
+    desc: {
+      de: "Cookie-Laden, lecker aber sehr süß.",
+      en: "Cookie shop, delicious but very sweet.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=COOKONA&query_place_id=ChIJ33YwAZCipBIRcuiQ3iaya-E",
+    lat: 41.391378, lng: 2.155046,
+  },
+  {
+    name: "Belliny Brunch Born",
+    cat: "day", area: "El Born",
+    desc: {
+      de: "Brunch im Born.",
+      en: "Brunch in El Born.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Belliny%20Brunch%20Born&query_place_id=ChIJif3D3i-jpBIRTY4fpE_JZ4w",
+    lat: 41.3840671, lng: 2.1838873,
+  },
+  {
+    name: "Trópico",
+    cat: "day", area: "Eixample",
+    desc: {
+      de: "Brunch, lateinamerikanisch angehaucht.",
+      en: "Brunch with a Latin American touch.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Tr%C3%B3pico&query_place_id=ChIJZ_wsu_mjpBIRb4SLxP0tx44",
+    lat: 41.3878512, lng: 2.1650035,
+  },
+  {
+    name: "Billy Brunch & Park",
+    cat: "day", area: "El Born",
+    desc: {
+      de: "Zweiter Standort von Billy Brunch, mit Blick auf einen kleinen Park.",
+      en: "Second Billy Brunch location, overlooking a small park.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Billy%20Brunch%20%26%20Park&query_place_id=ChIJ44Y8zyCjpBIRlB4-etd1nTM",
+    lat: 41.3879012, lng: 2.1787033,
+  },
+  /* ---------------- DAY TRIPS ---------------- */
+  {
+    name: "Sitges",
+    cat: "trips", area: "Küste, ~35 km südwestlich",
+    desc: {
+      de: "Kleinstadt an der Küste, gute Tagestour ab Barcelona — Zug ab Sants oder Passeig de Gràcia, gut eine Stunde. Strand, Altstadt, ruhiger als die Stadt.",
+      en: "Small coastal town, a good day trip from Barcelona — train from Sants or Passeig de Gràcia, about an hour. Beach, old town, calmer than the city.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Sitges&query_place_id=ChIJ-wiyIEeAoxIR-cgHKfvxYXA",
+    lat: 41.2365928, lng: 1.8058987,
+  },
+  {
+    name: "Montserrat",
+    cat: "trips", area: "Berge, ~50 km nordwestlich",
+    desc: {
+      de: "Freistehendes Bergmassiv mit dem Kloster Santa Maria de Montserrat, per Zug plus Zahnradbahn oder Seilbahn erreichbar. Ganzer Tag einplanen.",
+      en: "Freestanding mountain massif with the Santa Maria de Montserrat monastery, reached by train plus rack railway or cable car. Plan a full day.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Montserrat&query_place_id=ChIJM91TOlH1pBIR8UpzodtBqPM",
+    lat: 41.5933378, lng: 1.8376246,
   },
 ];
