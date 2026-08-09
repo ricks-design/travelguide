@@ -274,6 +274,16 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
   applyLang();
 });
 
+/* ---------- back to top ---------- */
+(function initBackToTop() {
+  const btn = document.getElementById("btn-top");
+  if (!btn) return; // older city pages without the markup keep working
+  const toggle = () => btn.classList.toggle("visible", window.scrollY > 500);
+  window.addEventListener("scroll", toggle, { passive: true });
+  toggle();
+  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+})();
+
 applyLang();
 try {
   initMap();
