@@ -122,6 +122,39 @@ a:focus-visible, button:focus-visible {
 }
 .hero-lang-btn:hover { background: rgba(20, 20, 20, 0.75); }
 
+/* home button: fixed top-left corner of the hero photo, mirror image of the
+   language switch on the right. Leads back to the city index. */
+.hero-home-btn {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  left: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.hero-home-btn:hover { background: rgba(20, 20, 20, 0.75); text-decoration: none; }
+
+/* on the darkest phones both buttons must clear the h1; the hero already has
+   150px of top padding, so nothing else is needed here. */
+@media (max-width: 420px) {
+  .hero-home-btn, .hero-lang-btn { font-size: 12px; padding: 6px 11px; }
+}
+
 /* scudetto rule: the double stripe under section titles */
 .rule {
   height: 6px; width: 72px; margin: 22px 0 0;
@@ -361,20 +394,6 @@ body.theme-london {
   --c-trips: #6bcf97;  /* District-ish green */
 }
 
-/* ============================================================
-   THEME: Barcelona — trencadís (mosaic tile) accent on the shared
-   anthracite base. First city built directly in the new colour
-   system: neutral background, accent reserved for headers/links/chips.
-   ============================================================ */
-body.theme-barcelona {
-  --accent: #0e9aa7;   /* trencadís teal */
-  --c-sights: #0e9aa7; /* teal */
-  --c-food: #e8763c;   /* terracotta / paprika */
-  --c-night: #c9427d;  /* mosaic pink/magenta */
-  --c-day: #f0b429;    /* Parc Güell mustard yellow */
-  --c-trips: #7fcf9b;  /* sea/mountain green */
-}
-
 
 /* ============================================================
    Compact sticky filter bar on phones (Solution B)
@@ -429,4 +448,20 @@ body.theme-barcelona {
 
   /* map buttons also wrap a lot on small screens */
   .map-actions { flex-wrap: wrap; }
+}
+
+
+/* ============================================================
+   THEME: Rome — ochre accent on the shared anthracite base.
+   The giallorosso dark red is too low-contrast for links on
+   anthracite, so it is used as a category colour only.
+   ============================================================ */
+body.theme-rome {
+  --accent: #e0a838;   /* ochre */
+  --amber: #e0a838;
+  --c-food: #e0703f;   /* terracotta */
+  --c-drinks: #b5546b; /* wine red */
+  --c-sweet: #d8c07a;  /* pale gold */
+  --c-art: #7fa8d9;    /* blue */
+  --c-sights: #7fcf9b; /* green */
 }
