@@ -150,6 +150,10 @@ function initMap() {
 }
 
 function renderMarkers() {
+  // Leaflet may be unavailable (offline, blocked script, sandboxed preview).
+  // The chip and search handlers call this unconditionally, so guard here
+  // instead of letting every filter click throw.
+  if (!markerLayer) return;
   markerLayer.clearLayers();
   PLACES.filter(matchesFilter).forEach((p) => {
     if (p.lat == null) return;
