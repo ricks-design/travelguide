@@ -1,0 +1,467 @@
+/* ============================================================
+   City Notes — stylesheet
+   Neutral anthracite base; each city sets one --accent colour.
+   --ink     #131313  page background (anthracite)
+   --panel   #1C1C1C  card surface
+   --panel-2 #232323  raised surface (popups)
+   --line    #2E2E2E  hairlines
+   --cream   #ECECEC  primary text
+   --muted   #9A9A9A  secondary text
+   --accent  (per city) links, active chip, H1 accent, rule
+   ============================================================ */
+
+:root {
+  --ink: #131313;
+  --ink-rgb: 19, 19, 19;
+  --panel: #1c1c1c;
+  --panel-2: #232323;
+  --line: #2e2e2e;
+  --cream: #ececec;
+  --muted: #9a9a9a;
+  /* Naples accent + category colours (default theme) */
+  --accent: #12a0d7;
+  --amber: #12a0d7;
+  --c-pizza: #f0a94e;
+  --c-street: #ef7f6b;
+  --c-coffee: #d9c27c;
+  --c-bars: #c96f85;
+  --c-sights: #12a0d7;
+  --c-trips: #7fcf9b;
+  --radius: 14px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Archivo", -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- hero ---------- */
+.hero-content { padding: 56px 0 28px; }
+.hero { position: relative; }
+.hero-img {
+  position: relative; overflow: hidden;
+  margin: 16px 16px 0;
+  border-radius: 20px;
+}
+.hero-img .hero-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 62%;
+}
+.hero-img::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(var(--ink-rgb), 0.96) 0%, rgba(var(--ink-rgb), 0.55) 45%, rgba(var(--ink-rgb), 0.15) 100%),
+    linear-gradient(to right, rgba(var(--ink-rgb), 0.55) 0%, rgba(var(--ink-rgb), 0) 60%);
+}
+.hero-img .hero-content {
+  position: relative; z-index: 2;
+  padding: 150px 24px 34px;
+  text-shadow: 0 1px 14px rgba(0,0,0,0.55);
+}
+.hero-img .sub, .hero-img .updated { color: #dcdcdc; }
+.hero .eyebrow {
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--amber); margin: 0 0 10px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(52px, 9vw, 96px);
+  line-height: 0.95;
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+}
+.hero h1 .accent { color: var(--accent); }
+.hero .sub { color: var(--muted); max-width: 60ch; margin: 0; }
+.hero .updated { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* language switch: fixed top-right corner of the hero photo on every page,
+   so it never competes with the filter bar for space. */
+.hero-lang-btn {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+}
+.hero-lang-btn:hover { background: rgba(20, 20, 20, 0.75); }
+
+/* home button: fixed top-left corner of the hero photo, mirror image of the
+   language switch on the right. Leads back to the city index. */
+.hero-home-btn {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  left: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.hero-home-btn:hover { background: rgba(20, 20, 20, 0.75); text-decoration: none; }
+
+/* on the darkest phones both buttons must clear the h1; the hero already has
+   150px of top padding, so nothing else is needed here. */
+@media (max-width: 420px) {
+  .hero-home-btn, .hero-lang-btn { font-size: 12px; padding: 6px 11px; }
+}
+
+/* scudetto rule: the double stripe under section titles */
+.rule {
+  height: 6px; width: 72px; margin: 22px 0 0;
+  background: linear-gradient(to bottom, var(--accent) 0 2px, transparent 2px 4px, #ffffff 4px 6px);
+}
+
+/* ---------- sticky filter bar ---------- */
+.bar {
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(var(--ink-rgb), 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.bar-inner { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.chip:hover { color: var(--cream); }
+.chip.active { color: var(--ink); background: var(--cream); border-color: var(--cream); font-weight: 600; }
+.chip .dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 6px; vertical-align: 1px;
+}
+.search {
+  margin-left: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--cream);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  min-width: 150px;
+}
+.search::placeholder { color: var(--muted); }
+
+/* ---------- map ---------- */
+.map-section { padding: 26px 0 6px; }
+#map {
+  height: 380px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  z-index: 1;
+}
+.map-actions { display: flex; gap: 10px; margin-top: 10px; }
+.map-btn {
+  font-size: 12.5px; color: var(--muted);
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.map-btn:hover { color: var(--cream); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--panel-2); color: var(--cream);
+}
+.leaflet-popup-content { font-family: var(--font-body); font-size: 13.5px; }
+.leaflet-popup-content a { color: var(--accent); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
+
+/* ---------- cards ---------- */
+.grid-section { padding: 20px 0 40px; }
+.count { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  display: flex; flex-direction: column;
+  border-top: 3px solid var(--cat, var(--line));
+}
+.card img.photo {
+  width: calc(100% + 36px);
+  margin: -18px -18px 14px;
+  border-radius: calc(var(--radius) - 3px) calc(var(--radius) - 3px) 0 0;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.card .meta {
+  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.card .meta .catlabel { color: var(--cat, var(--muted)); font-weight: 600; }
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 550;
+  font-size: 21px;
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+.card h3 .star { color: var(--amber); font-size: 17px; }
+.badge {
+  display: inline-block; font-size: 10.5px; letter-spacing: 0.06em;
+  text-transform: uppercase; border-radius: 4px; padding: 2px 7px;
+  margin-left: 6px; vertical-align: 2px; font-family: var(--font-body); font-weight: 600;
+}
+.badge.todo { background: rgba(255,255,255,0.09); color: var(--muted); }
+.badge.closed { background: #4a2530; color: #e89aa8; }
+.badge.closing { background: #4a3a18; color: #f0c980; }
+.card p.desc { color: #c9c9c9; font-size: 14.5px; margin: 0 0 14px; flex: 1; }
+.card .links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
+.card .links a::after { content: " ↗"; font-size: 11px; }
+
+/* ---------- info section ---------- */
+.info-section { border-top: 1px solid var(--line); padding: 40px 0 30px; }
+.info-section h2, .grid-section h2, .map-section h2 {
+  font-family: var(--font-display); font-weight: 550;
+  font-size: 28px; margin: 0 0 6px;
+}
+.info-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-top: 22px;
+}
+.info-card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px;
+}
+.info-card h3 {
+  font-family: var(--font-display); font-weight: 550;
+  font-size: 19px; margin: 0 0 10px; color: var(--amber);
+}
+.info-card p, .info-card li { color: #c9c9c9; font-size: 14.5px; }
+.info-card p { margin: 0 0 10px; }
+.info-card ul { margin: 0; padding-left: 18px; }
+.info-card li { margin-bottom: 6px; }
+.info-card table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.info-card td { padding: 5px 0; border-bottom: 1px solid var(--line); color: #c9c9c9; }
+.info-card td:last-child { text-align: right; white-space: nowrap; color: var(--cream); }
+.info-card tr:last-child td { border-bottom: none; }
+
+/* ---------- footer ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0 40px;
+  color: var(--muted); font-size: 13px;
+}
+footer a { color: var(--muted); text-decoration: underline; }
+
+/* ---------- landing page ---------- */
+.cities {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px; padding: 30px 0 60px;
+}
+.city-card {
+  display: block; background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 22px; color: var(--cream);
+  transition: border-color .15s, transform .15s;
+}
+.city-card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+.city-card h2 { font-family: var(--font-display); font-weight: 550; font-size: 30px; margin: 0 0 6px; }
+.city-card p { color: var(--muted); font-size: 14px; margin: 0; }
+.city-card.soon { opacity: 0.45; pointer-events: none; }
+.city-card .tag {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--amber);
+}
+
+@media (max-width: 640px) {
+  #map { height: 300px; }
+}
+
+
+/* ---------- language toggle ---------- */
+body[data-lang="de"] .lang-en { display: none; }
+body[data-lang="en"] .lang-de { display: none; }
+
+/* ---------- map/list sync toggle & card highlight ---------- */
+.map-btn.active { color: var(--ink); background: var(--cream); border-color: var(--cream); font-weight: 600; }
+.card.flash { animation: cardflash 1.6s ease; }
+@keyframes cardflash {
+  0%, 60% { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber); }
+  100% { border-color: var(--line); box-shadow: none; }
+}
+
+
+/* ---------- search clear button ---------- */
+.search-wrap { position: relative; margin-left: auto; display: inline-flex; }
+.search-wrap .search { margin-left: 0; padding-right: 30px; }
+.search-clear {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border: none; border-radius: 50%;
+  background: var(--line); color: var(--cream);
+  font-size: 13px; line-height: 20px; text-align: center; cursor: pointer;
+  padding: 0; display: none;
+}
+.search-clear:hover { background: var(--accent); color: var(--ink); }
+.search-wrap.has-value .search-clear { display: block; }
+/* hide the ugly native webkit clear cross, we use our own */
+.search::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+/* iOS Safari zooms the page in on focus if an input's font-size is below
+   16px. Force 16px on the search field to prevent that (desktop keeps the
+   same visual size because the field's padding/height don't change). */
+.search { font-size: 16px; }
+
+/* mobile-only icon that opens the search row (Solution B); hidden on desktop */
+.search-toggle {
+  display: none;
+  width: 34px; height: 34px; flex: 0 0 auto;
+  align-items: center; justify-content: center;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: auto;
+}
+.search-toggle:hover { color: var(--cream); }
+.search-toggle.active { color: var(--ink); background: var(--cream); border-color: var(--cream); }
+
+
+
+/* ============================================================
+   THEME: London — TfL accent on the shared anthracite base.
+   Only the accent + category colours change; background stays neutral.
+   ============================================================ */
+body.theme-london {
+  --accent: #e1251b;   /* TfL roundel red */
+  --c-sights: #00a0e2; /* Victoria/Piccadilly blue */
+  --c-food: #f4a13c;   /* warm amber, distinct from the red/yellow */
+  --c-night: #e1251b;  /* Central red */
+  --c-day: #ffd300;    /* Circle yellow */
+  --c-trips: #6bcf97;  /* District-ish green */
+}
+
+
+/* ============================================================
+   Compact sticky filter bar on phones (Solution B)
+   Row 1: [chips ← scroll →] [🔍 toggle]   — never touched by search width
+   Row 2: [search ...................][✕] — only present while open
+   The language button lives in the hero photo, not in this bar at all,
+   so it can never be squeezed out.
+   ============================================================ */
+@media (max-width: 700px) {
+  .bar { padding: 7px 0; }
+  .bar-inner {
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+
+  /* chips: one scrollable line, full width of row 1 minus the toggle */
+  .chips {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 18px), transparent 100%);
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    font-size: 12.5px;
+    padding: 6px 11px;
+  }
+
+  .search-toggle { display: flex; }
+
+  /* search row: full width, own line, collapsed by default */
+  .search-wrap {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    transition: max-height .18s ease;
+  }
+  .bar-inner.search-open .search-wrap {
+    max-height: 44px;
+    margin-top: 6px;
+  }
+  .search-wrap .search { width: 100%; }
+
+  /* map buttons also wrap a lot on small screens */
+  .map-actions { flex-wrap: wrap; }
+}
+
+
+/* ============================================================
+   THEME: Rome — ochre accent on the shared anthracite base.
+   The giallorosso dark red is too low-contrast for links on
+   anthracite, so it is used as a category colour only.
+   ============================================================ */
+body.theme-rome {
+  --accent: #e0a838;   /* ochre */
+  --amber: #e0a838;
+  --c-food: #e0703f;   /* terracotta */
+  --c-drinks: #b5546b; /* wine red */
+  --c-sweet: #d8c07a;  /* pale gold */
+  --c-art: #7fa8d9;    /* blue */
+  --c-sights: #7fcf9b; /* green */
+}

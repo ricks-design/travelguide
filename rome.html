@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rom — City Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-lang="de" class="theme-rome">
+
+<header class="hero hero-img">
+  <!-- Foto: images/hero-roma.jpg ablegen (Querformat, ~1800px breit).
+       Fehlt das Bild, fällt der Header automatisch auf die dunkle Variante zurück. -->
+  <img class="hero-bg" src="images/hero-roma.jpg" alt=""
+       onerror="this.closest('header').classList.remove('hero-img'); this.remove();">
+  <div class="hero-content wrap">
+    <p class="eyebrow">City Notes</p>
+    <h1>Ro<span class="accent">ma</span></h1>
+    <p class="sub lang-de">Essen, Wein, Caravaggio, Ausgrabungen.</p>
+    <p class="sub lang-en">Food, wine, Caravaggio, ruins.</p>
+    <p class="updated lang-de">Stand: August 2026 • <a href="#info">gut zu wissen ↓</a></p>
+    <p class="updated lang-en">Last updated: August 2026 • <a href="#info">good to know ↓</a></p>
+    <div class="rule" aria-hidden="true"></div>
+  </div>
+  <a class="hero-home-btn" href="index.html" aria-label="Zurück zur Übersicht">
+    <span aria-hidden="true">←</span>
+    <span class="lang-de">Städte</span>
+    <span class="lang-en">Cities</span>
+  </a>
+  <button class="hero-lang-btn" id="lang-toggle" aria-label="Sprache wechseln">EN</button>
+</header>
+
+<nav class="bar" aria-label="Filter">
+  <div class="wrap bar-inner">
+    <div class="chips" id="chips"></div>
+    <button class="search-toggle" id="search-toggle" aria-label="Suche öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+    </button>
+    <span class="search-wrap" id="search-wrap">
+      <input class="search" id="search" type="search" placeholder="Suchen…" aria-label="Suche">
+      <button class="search-clear" id="search-clear" type="button" aria-label="Suche löschen">✕</button>
+    </span>
+  </div>
+</nav>
+
+<section class="map-section wrap" aria-label="Karte">
+  <div id="map"></div>
+  <div class="map-actions">
+    <button class="map-btn" id="btn-city">Auf Rom zentrieren</button>
+    <button class="map-btn" id="btn-all">Alles anzeigen</button>
+    <button class="map-btn" id="btn-sync" aria-pressed="true">Liste folgt Karte</button>
+  </div>
+</section>
+
+<section class="grid-section wrap">
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="info-section" id="info">
+  <div class="wrap">
+    <h2 class="lang-de">Gut zu wissen</h2>
+    <h2 class="lang-en">Good to know</h2>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="info-grid">
+
+      <div class="info-card lang-de">
+        <h3>Vatikan an einem Vormittag</h3>
+        <p>Petersdom und Museen lassen sich an einem Vormittag verbinden, wenn man früh anfängt:</p>
+        <ul>
+          <li>7:15 Uhr Petersdom, direkt danach die Kuppel (7:30 öffnet sie, dann etwa 15 Minuten Wartezeit)</li>
+          <li>Gegen 10 Uhr außen herum zum Museumseingang, entspannt 15 Minuten Fußweg</li>
+          <li>10:30 Uhr Führung durch die Museen, dazwischen ein Kaffee</li>
+        </ul>
+        <p>Mittwochvormittags ist der Petersdom wegen der Generalaudienz auf dem Petersplatz zeitweise geschlossen. Sonntags sind die Museen zu.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>The Vatican in one morning</h3>
+        <p>St Peter's and the museums combine into a single morning if you start early:</p>
+        <ul>
+          <li>7:15am St Peter's, then straight up the dome (it opens at 7:30, expect about 15 minutes' wait)</li>
+          <li>Around 10am walk round the outside to the museum entrance, an easy 15 minutes</li>
+          <li>10:30am guided tour of the museums, with a coffee in between</li>
+        </ul>
+        <p>On Wednesday mornings St Peter's closes for a while because of the general audience in the square. The museums are closed on Sundays.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Tickets &amp; Reservierungen</h3>
+        <table>
+          <tr><td>Galleria Borghese</td><td>18 €, Pflicht</td></tr>
+          <tr><td>Vatikanische Museen</td><td>20 € + 5 €</td></tr>
+          <tr><td>Kolosseum 24 h</td><td>18 €</td></tr>
+          <tr><td>Pantheon</td><td>7 €</td></tr>
+          <tr><td>Palazzo Barberini</td><td>15 €</td></tr>
+          <tr><td>Petersdom</td><td>frei</td></tr>
+          <tr><td>Kuppel (Kiosk)</td><td>10 / 15 €</td></tr>
+          <tr><td>Kirchen</td><td>frei</td></tr>
+        </table>
+        <p>Kolosseum und Engelsburg verkaufen nur noch personengebundene Tickets, Ausweis mitnehmen. Erster Sonntag im Monat: staatliche Museen frei, Borghese trotzdem mit Reservierung.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Tickets &amp; booking</h3>
+        <table>
+          <tr><td>Galleria Borghese</td><td>€18, required</td></tr>
+          <tr><td>Vatican Museums</td><td>€20 + €5</td></tr>
+          <tr><td>Colosseum 24 h</td><td>€18</td></tr>
+          <tr><td>Pantheon</td><td>€7</td></tr>
+          <tr><td>Palazzo Barberini</td><td>€15</td></tr>
+          <tr><td>St Peter's</td><td>free</td></tr>
+          <tr><td>Dome (kiosk)</td><td>€10 / €15</td></tr>
+          <tr><td>Churches</td><td>free</td></tr>
+        </table>
+        <p>The Colosseum and Castel Sant'Angelo now sell name-bound tickets only, so bring ID. First Sunday of the month: state museums free, but the Borghese still needs a booking.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Gambero Rosso: Tre Spicchi</h3>
+        <p>Die römischen Pizzerien mit Tischservice und Höchstwertung:</p>
+        <ul>
+          <li>Seu Pizza Illuminati (Trastevere) — Pier Daniele Seu &amp; Valeria Zuppardo</li>
+          <li>180g Pizzeria Romana (Centocelle) — Jacopo Mercuro</li>
+          <li>Vico Pizza &amp; Wine (Piazza Rondanini) — Enzo Coccia</li>
+          <li>Tac Thin &amp; Crunchy (Mostacciano) — Pier Daniele Seu, hauchdünne Romana</li>
+          <li>San Martino Pizza &amp; Bolle (Ostiense) — Alessio Muscas</li>
+          <li>La Gatta Mangiona (Monteverde) — Giancarlo Casa</li>
+          <li>50 Kalò di Ciro Salvo (Via Flavia)</li>
+          <li>Tonda (Tufello) — Stefano Callegari</li>
+          <li>Sbanco (Appio Latino)</li>
+          <li>A Rota (Torpignattara) — Sami El Sabawy</li>
+        </ul>
+        <p>Im Umland außerdem Pizzeria Clementina in Fiumicino und Mater in Fiano Romano.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Gambero Rosso: Tre Spicchi</h3>
+        <p>The top-rated Roman pizzerias with table service:</p>
+        <ul>
+          <li>Seu Pizza Illuminati (Trastevere) — Pier Daniele Seu &amp; Valeria Zuppardo</li>
+          <li>180g Pizzeria Romana (Centocelle) — Jacopo Mercuro</li>
+          <li>Vico Pizza &amp; Wine (Piazza Rondanini) — Enzo Coccia</li>
+          <li>Tac Thin &amp; Crunchy (Mostacciano) — Pier Daniele Seu, paper-thin romana</li>
+          <li>San Martino Pizza &amp; Bolle (Ostiense) — Alessio Muscas</li>
+          <li>La Gatta Mangiona (Monteverde) — Giancarlo Casa</li>
+          <li>50 Kalò di Ciro Salvo (Via Flavia)</li>
+          <li>Tonda (Tufello) — Stefano Callegari</li>
+          <li>Sbanco (Appio Latino)</li>
+          <li>A Rota (Torpignattara) — Sami El Sabawy</li>
+        </ul>
+        <p>Just outside the city, also Pizzeria Clementina in Fiumicino and Mater in Fiano Romano.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Gambero Rosso: Tre Rotelle</h3>
+        <p>Die besten Blech- und Stückpizzerien, Pizza al taglio:</p>
+        <ul>
+          <li>Pizzarium (Prati) — Gabriele Bonci</li>
+          <li>Panificio Bonci (Trionfale) — Gabriele Bonci</li>
+          <li>Lievito Francesco Arnesano (EUR)</li>
+          <li>Pizza Chef (Colli Aniene)</li>
+        </ul>
+        <p>Als „Pizza dell'Anno“ zuletzt in Rom ausgezeichnet: Patate e Pajata bei Pizzarium, Cardoncelli mit Büffeljoghurt bei Frumentario, sowie Extremis in der Kategorie Marinara.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Gambero Rosso: Tre Rotelle</h3>
+        <p>The best pizza al taglio, sold by the slice:</p>
+        <ul>
+          <li>Pizzarium (Prati) — Gabriele Bonci</li>
+          <li>Panificio Bonci (Trionfale) — Gabriele Bonci</li>
+          <li>Lievito Francesco Arnesano (EUR)</li>
+          <li>Pizza Chef (Colli Aniene)</li>
+        </ul>
+        <p>Recent "Pizza dell'Anno" awards in Rome: patate e pajata at Pizzarium, cardoncelli with buffalo yoghurt at Frumentario, and Extremis in the marinara category.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Gepäck &amp; Anreise</h3>
+        <p>Gepäckaufbewahrung per App über Radical Storage oder Bounce, gute Verfügbarkeit im ganzen Zentrum und rund um Termini, etwa 5 € pro Tag und Stück, versichert. Auf die Öffnungszeiten der jeweiligen Annahmestelle achten — die sind nicht identisch mit denen der App.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Luggage &amp; arrival</h3>
+        <p>Luggage storage by app through Radical Storage or Bounce, with good availability across the centre and around Termini, around €5 per item per day, insured. Watch the opening hours of the individual drop-off point — they are not the same as the app's.</p>
+      </div>
+
+      <div class="info-card lang-de">
+        <h3>Zum Lesen</h3>
+        <p>Golo Maurer, <em>Rom. Stadt fürs Leben</em>. Bericht eines Deutschen, der nach Rom ausgewandert ist und die Stadt aus seiner Perspektive beschreibt. Unterhaltsam und ohne Postkartenton.</p>
+      </div>
+      <div class="info-card lang-en">
+        <h3>Reading</h3>
+        <p>Golo Maurer, <em>Rom. Stadt fürs Leben</em> (German only). A German who moved to Rome describing the city from his own perspective. Entertaining, and free of the postcard tone.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="lang-de">Einzelne Tipps von Marc. <a href="index.html">← Alle Städte</a></p>
+    <p class="lang-en">Some of the tips come from Marc. <a href="index.html">← All cities</a></p>
+  </div>
+</footer>
+
+<script src="vendor/leaflet.js"></script>
+<script src="js/rome-data.js"></script>
+<script src="js/guide.js"></script>
+</body>
+</html>
