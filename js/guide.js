@@ -150,10 +150,6 @@ function initMap() {
 }
 
 function renderMarkers() {
-  // Leaflet may be unavailable (offline, blocked script, sandboxed preview).
-  // The chip and search handlers call this unconditionally, so guard here
-  // instead of letting every filter click throw.
-  if (!markerLayer) return;
   markerLayer.clearLayers();
   PLACES.filter(matchesFilter).forEach((p) => {
     if (p.lat == null) return;
@@ -273,16 +269,6 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
   }
   applyLang();
 });
-
-/* ---------- back to top ---------- */
-(function initBackToTop() {
-  const btn = document.getElementById("btn-top");
-  if (!btn) return; // older city pages without the markup keep working
-  const toggle = () => btn.classList.toggle("visible", window.scrollY > 500);
-  window.addEventListener("scroll", toggle, { passive: true });
-  toggle();
-  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-})();
 
 applyLang();
 try {

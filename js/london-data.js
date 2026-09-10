@@ -1,7 +1,7 @@
 /* ============================================================
    LONDON — place data (bilingual)
    Same structure as naples-data.js.
-   cat: "sights" | "night" | "day" | "trips"
+   cat: "sights" | "food" | "day" | "shop" | "night" | "trips"
    ============================================================ */
 
 const CITY = {
@@ -14,8 +14,9 @@ const CITY = {
 const CATS = {
   sights: { label: { de: "Sehenswürdigkeiten", en: "Sights" }, color: "var(--c-sights)", hex: "#00a0e2" },
   food:   { label: { de: "Essen", en: "Food" }, color: "var(--c-food)", hex: "#f4a13c" },
-  night:  { label: { de: "Ausgehen", en: "Going out" }, color: "var(--c-night)", hex: "#e1251b" },
   day:    { label: { de: "Tagsüber", en: "Daytime" }, color: "var(--c-day)", hex: "#ffd300" },
+  shop:   { label: { de: "Shopping & Märkte", en: "Shopping & markets" }, color: "var(--c-shop)", hex: "#b48ee0" },
+  night:  { label: { de: "Ausgehen", en: "Going out" }, color: "var(--c-night)", hex: "#e1251b" },
   trips:  { label: { de: "Aktiv & Ausflüge", en: "Active & day trips" }, color: "var(--c-trips)", hex: "#6bcf97" },
 };
 
@@ -32,8 +33,118 @@ const PLACES = [
     maps2: { label: { de: "→ 50 Kalò in Neapel", en: "→ 50 Kalò in Naples" }, url: "naples.html#place=50-kal" },
     lat: 51.50713, lng: -0.12649,
   },
+  {
+    name: "Pieminister",
+    cat: "food", area: "Borough Market",
+    desc: {
+      de: "Pie-Stand in der Markthalle. Die Standard-Sorte Steak and Ale (auf der Karte „Moo“) ist die beste — bei Spezialvarianten wie Moo & Blue geht der klare Fleischgeschmack etwas verloren.",
+      en: "Pie stall inside the market hall. The standard Steak and Ale flavour (called \"Moo\" on the menu) is the best one — fancier variants like Moo & Blue muddy the clean beef flavour a bit.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Pieminister%20Borough%20Market&query_place_id=ChIJDVu0dlcDdkgRhM0egVyrGGc",
+    lat: 51.50574, lng: -0.08995,
+  },
+  {
+    name: "Rambutan",
+    cat: "food", area: "Borough Market",
+    desc: {
+      de: "Sri-lankisches Restaurant von Cynthia Shanmugalingam, direkt am Rand von Borough Market. Feurige Currys über offenem Feuer, wechselnde Karte. Keine Reservierung nötig, aber mittags/abends oft voll.",
+      en: "Sri Lankan restaurant by Cynthia Shanmugalingam, right on the edge of Borough Market. Fiery curries cooked over open fire, menu changes regularly. No reservation needed, but often packed at lunch and dinner.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Rambutan%20Borough%20Market&query_place_id=ChIJnZxnVJUDdkgRs7i5rhmIjwM",
+    lat: 51.50556, lng: -0.09152,
+  },
+  {
+    name: "Dishoom Covent Garden",
+    cat: "food", area: "Covent Garden",
+    desc: {
+      de: "Bombay-Café-Konzept mit mehreren Filialen in London, dies die erste und ursprüngliche von 2010. Bombay-Frühstück, Black Daal, Biryani. Unbedingt vorher reservieren — ohne Reservierung sind 30+ Minuten Wartezeit normal.",
+      en: "Bombay-café concept with several branches across London — this is the original, from 2010. Bombay breakfast, black daal, biryani. Book ahead; without a reservation, 30+ minute waits are normal.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Dishoom%20Covent%20Garden&query_place_id=ChIJxZXYx7cEdkgRdgAOZ6OHOJw",
+    lat: 51.51252, lng: -0.12683,
+  },
+  {
+    name: "Darjeeling Express",
+    cat: "food", area: "Soho",
+    desc: {
+      de: "Von einem komplett weiblichen Küchenteam geführtes Restaurant von Asma Khan, bengalische/Hyderabadi-Hausmannskost. Zieht 2026 von Kingly Court (Carnaby Street) auf die Rupert Street in Soho um — Adresse vor dem Besuch checken.",
+      en: "Restaurant run entirely by a female kitchen team, led by Asma Khan — Bengali and Hyderabadi home cooking. Moving in 2026 from Kingly Court (Carnaby Street) to Rupert Street in Soho — check the address before going.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Darjeeling%20Express%20Rupert%20Street&query_place_id=ChIJedBoD9UEdkgRnEfxjGeFIpY",
+    lat: 51.51130, lng: -0.13280,
+  },
+  {
+    name: "Roti King",
+    cat: "food", area: "Euston",
+    desc: {
+      de: "Malaysischer Kellerimbiss direkt neben der Euston Station, seit Jahren Kultstatus. Roti Canai frisch vom Blech, dazu Beef Rendang oder Char Kway Teow. Kein Schnickschnack, oft Schlange, geht aber schnell.",
+      en: "Malaysian basement spot right by Euston station, cult status for years. Roti canai fresh off the griddle, with beef rendang or char kway teow on the side. No frills, often a queue, but it moves fast.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Roti%20King%20Euston&query_place_id=ChIJtRRu9iQbdkgRqt8jDR1osYw",
+    lat: 51.52910, lng: -0.13200,
+  },
+  {
+    name: "BAPJO",
+    cat: "food", area: "Waterloo / Lambeth North",
+    desc: {
+      de: "Kleines koreanisches Restaurant nahe Waterloo/Lambeth North. Bibimbap, koreanisches Fried Chicken, Stews. Sehr klein, keine eigene Toilette (das Pub ein paar Türen weiter hilft aus).",
+      en: "Small Korean restaurant near Waterloo/Lambeth North. Bibimbap, Korean fried chicken, stews. Very small, no toilet of its own (the pub a few doors down covers that).",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=BAPJO%20Baylis%20Road&query_place_id=ChIJfZ842nMFdkgRBfolNpjxj3M",
+    lat: 51.50037, lng: -0.11085,
+  },
+  {
+    name: "Smoking Goat Shoreditch",
+    cat: "food", area: "Shoreditch",
+    desc: {
+      de: "Thai-Grill mit Bangkok-Streetfood-Anspruch, gegrilltes und geräuchertes Fleisch im Fokus. Größerer zweiter Standort im ehemaligen Tea Building an der Shoreditch High Street. Für Gruppen ab 8 Personen gibt es nur das Feasting-Menü.",
+      en: "Thai grill going for a Bangkok street-food feel, built around grilled and smoked meat. This is the bigger, second location, in the former Tea Building on Shoreditch High Street. Groups of 8+ only get the set feasting menu.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Smoking%20Goat%20Shoreditch&query_place_id=ChIJC_TBt7AcdkgRhkmL-r9VwRU",
+    lat: 51.52422, lng: -0.07692,
+  },
 
   /* ---------------- SIGHTS ---------------- */
+  {
+    name: "Westminster Abbey",
+    cat: "sights", area: "Westminster",
+    desc: {
+      de: "Grabkirche der englischen Könige, seit 1066 Krönungsort. Als Kirche jederzeit kostenlos zugänglich — sonntags ist das sogar der einzige Weg hinein, da dann keine Besichtigung stattfindet. Für den Sonntagsgottesdienst mindestens 45 Minuten vorher am Great West Door anstellen (offiziell werden 20–30 Minuten empfohlen, in der Praxis lieber mehr Puffer einplanen); die Plätze sind begrenzt und gehen nach Ankunftsreihenfolge. Sightseeing-Ticket Mo–Sa, regulär rund 30 £.",
+      en: "Burial church of England's monarchs, coronation site since 1066. Free to enter for worship at any time — on Sundays that's the only way in, since there's no sightseeing that day. For the Sunday service, queue at the Great West Door at least 45 minutes early (official guidance says 20–30 minutes, but more buffer doesn't hurt); seating is limited and first-come, first-served. Sightseeing tickets Mon–Sat, around £30.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Westminster%20Abbey&query_place_id=ChIJLzVDusQEdkgRelObBaL_jto",
+    lat: 51.49937, lng: -0.12730,
+  },
+  {
+    name: "Palace of Westminster",
+    cat: "sights", area: "Westminster",
+    desc: {
+      de: "Regierungssitz mit Big Ben direkt an der Themse, gegenüber der Abbey. Von außen jederzeit zugänglich, allein der Spaziergang an der Fassade entlang der Themse lohnt sich. Für Führungen oder Tribünenplätze im Unter-/Oberhaus muss man sich vorher registrieren.",
+      en: "Seat of government with Big Ben right on the Thames, opposite the Abbey. Free to view from outside at any time — the walk along the riverside facade alone is worth it. Guided tours or public gallery seats in the Commons/Lords need registering for in advance.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Palace%20of%20Westminster&query_place_id=ChIJmZuNDMQEdkgRfB9O9456eQc",
+    lat: 51.49948, lng: -0.12481,
+  },
+  {
+    name: "Leadenhall Market",
+    cat: "sights", area: "City of London",
+    desc: {
+      de: "Überdachter viktorianischer Markt aus dem 19. Jahrhundert mitten in der City, aufwendig verzierte Eisenkonstruktion. Kein Muss zum Einkaufen — einfach hinsetzen, einen Kaffee trinken und nach oben schauen reicht.",
+      en: "Covered Victorian market from the 19th century right in the City, elaborately decorated ironwork. No need to buy anything — just sit down with a coffee and look up at the architecture.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Leadenhall%20Market&query_place_id=ChIJURt2jFIDdkgRsxERfqYhtSo",
+    lat: 51.51277, lng: -0.08353,
+  },
+  {
+    name: "St Dunstan in the East",
+    cat: "sights", area: "City of London",
+    desc: {
+      de: "Kirchenruine aus dem 12. Jahrhundert, im Blitz 1941 zerstört und seit 1971 als öffentlicher Garten begrünt. Efeu und Bäume wachsen durch die Fensteröffnungen — wirklich hübsch verwunschen. Kostenlos, täglich 8–19 Uhr, zwischen London Bridge und Tower of London.",
+      en: "12th-century church ruin, gutted in the 1941 Blitz and turned into a public garden in 1971. Ivy and trees grow through the window openings — genuinely picturesque, half-wild. Free, daily 8am–7pm, between London Bridge and the Tower of London.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=St%20Dunstan%20in%20the%20East&query_place_id=ChIJbxkx_1EDdkgRLfU_tC9tPb0",
+    lat: 51.50972, lng: -0.08246,
+  },
   {
     name: "Wallace Collection",
     cat: "sights", area: "Marylebone",
@@ -170,6 +281,108 @@ const PLACES = [
     maps: "https://www.google.com/maps/search/?api=1&query=Prufrock%20Coffee%20Leather%20Lane&query_place_id=ChIJac2MJkwbdkgREaRKCWzWrHc",
     lat: 51.51993, lng: -0.10947,
   },
+  {
+    name: "Borough Market",
+    cat: "day", area: "Southwark",
+    desc: {
+      de: "Londons älteste Lebensmittelmarkthalle, seit über 1000 Jahren an dieser Stelle. Di–Sa geöffnet (montags zu), am dichtesten am Wochenende. Pieminister und Rambutan (beide auf dieser Liste) liegen direkt hier.",
+      en: "London's oldest food market, on this site for over 1,000 years. Open Tue–Sat (closed Mondays), busiest at weekends. Pieminister and Rambutan (both on this list) are right here.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Borough%20Market&query_place_id=ChIJD2bPdVcDdkgRuUSgnOXnKDE",
+    lat: 51.50558, lng: -0.09048,
+  },
+  {
+    name: "Camden Market",
+    cat: "day", area: "Camden",
+    desc: {
+      de: "Marktkomplex am Regent's Canal mit Ständen für Kleidung, Antiquitäten und vor allem Streetfood aus aller Welt. Zum Essen hin, nicht zum Shoppen — die Foodstände sind der eigentliche Grund hierzukommen.",
+      en: "Market complex on Regent's Canal with stalls for clothes, antiques, and above all street food from around the world. Come for the food, not the shopping — the food stalls are the real reason to be here.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Camden%20Market&query_place_id=ChIJSfFEEuQadkgRCO-FF_-eZUc",
+    lat: 51.54140, lng: -0.14651,
+  },
+  {
+    name: "GAIL's Bakery",
+    cat: "day", area: "Notting Hill",
+    desc: {
+      de: "Bäckereikette mit vielen Filialen in London, hier die an der Portobello Road. Scones mit Clotted Cream und Marmelade, dazu ein Kaffee — gut zu verbinden mit dem Markt direkt nebenan.",
+      en: "Bakery chain with many branches across London, this one on Portobello Road. Scones with clotted cream and jam, plus a coffee — combines well with the market right next door.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=GAIL%27s%20Bakery%20Portobello%20Road&query_place_id=ChIJDUImdeIPdkgRpCRodwv-hXc",
+    lat: 51.51455, lng: -0.20409,
+  },
+  {
+    name: "Monmouth Coffee",
+    cat: "day", area: "Borough Market",
+    desc: {
+      de: "Kaffeeinstitution direkt neben Borough Market, seit den 1990ern. Kein Coffee-to-go, dafür Filterkaffee, der direkt vor einem aufgebrüht wird. Pfandsystem für Mehrwegbecher (5 £, bei Rückgabe erstattet).",
+      en: "Coffee institution right next to Borough Market, going since the 1990s. No takeaway cups — filter coffee brewed right in front of you instead. Reusable-cup deposit system (£5, refunded on return).",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Monmouth%20Coffee%20Borough%20Market&query_place_id=ChIJ94DTm1cDdkgRibmgxzXy2EQ",
+    lat: 51.50553, lng: -0.09141,
+  },
+  {
+    name: "Catalyst",
+    cat: "day", area: "Holborn",
+    desc: {
+      de: "Skandinavisch-minimalistisches Café am Gray's Inn Road in Holborn, eigene Röstung. 2026 unter die besten Coffeeshops Großbritanniens gewählt. Am Wochenende geschlossen.",
+      en: "Scandi-minimalist café on Gray's Inn Road in Holborn, roasts its own beans. Named among the UK's best coffee shops for 2026. Closed at weekends.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Catalyst%20Coffee%20Holborn&query_place_id=ChIJbeLD-0sbdkgRp4IcJrH47b8",
+    lat: 51.51981, lng: -0.11200,
+  },
+  {
+    name: "Climpson & Sons",
+    cat: "day", area: "Broadway Market / Hackney",
+    desc: {
+      de: "Kaffeerösterei seit 2002, das Café direkt am Broadway Market in Hackney. Kein Sitzplatz drinnen, aber Bänke draußen auf dem Markt. Gute Ergänzung zu einem Spaziergang am Regent's Canal.",
+      en: "Coffee roastery since 2002, the café sits right on Broadway Market in Hackney. No seating inside, but benches out on the market. Combines well with a walk along Regent's Canal.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Climpson%20%26%20Sons%20Broadway%20Market&query_place_id=ChIJx54enugcdkgRgI7vkpta1sE",
+    lat: 51.53748, lng: -0.06127,
+  },
+
+  /* ---------------- SHOPPING & MÄRKTE ---------------- */
+  {
+    name: "Carnaby Street",
+    cat: "shop", area: "Soho",
+    desc: {
+      de: "Fußgängerzone mit Modeketten und ein paar unabhängigen Läden, seit den 1960ern für Street-Fashion bekannt. Nettes Bummeln, nichts, wofür man einen ganzen Nachmittag einplanen muss.",
+      en: "Pedestrian shopping street with fashion chains and a handful of independent shops, known for street fashion since the 1960s. Nice for a stroll, not worth planning a whole afternoon around.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Carnaby%20Street&query_place_id=ChIJhYw3EdUEdkgRYaGKThvmX9o",
+    lat: 51.51319, lng: -0.13885,
+  },
+  {
+    name: "Neal's Yard",
+    cat: "shop", area: "Covent Garden",
+    desc: {
+      de: "Kleiner, bunt bemalter Innenhof in Covent Garden, versteckt zwischen den Gassen. Gesundheitskost-Läden und ein paar Cafés, vor allem zum Fotografieren und kurz Durchatmen.",
+      en: "Small, brightly painted courtyard in Covent Garden, tucked between the alleys. Health-food shops and a couple of cafés, mainly for photos and a quick breather.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Neal%27s%20Yard%20Covent%20Garden&query_place_id=ChIJ4V9RKM0EdkgRc59GlBoOclQ",
+    lat: 51.51447, lng: -0.12635,
+  },
+  {
+    name: "Fortnum & Mason",
+    cat: "shop", area: "Piccadilly",
+    desc: {
+      de: "Traditionskaufhaus am Piccadilly seit 1707, bekannt für Tee, Marmelade und Angestellte in den charakteristischen Livree-Mänteln. Auch ohne etwas zu kaufen sehenswert — die Lebensmittelabteilung im Erdgeschoss ist die schönste.",
+      en: "Traditional department store on Piccadilly since 1707, known for tea, jam, and staff in their signature livery coats. Worth a look even without buying anything — the food hall on the ground floor is the nicest part.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Fortnum%20%26%20Mason&query_place_id=ChIJ__8_XtYEdkgRtTLtWfASNFg",
+    lat: 51.50837, lng: -0.13831,
+  },
+  {
+    name: "Portobello Road Market",
+    cat: "shop", area: "Notting Hill",
+    desc: {
+      de: "Lange Marktstraße in Notting Hill, samstags am vollsten: Antiquitäten, Vintage-Kleidung, Streetfood. Werktags deutlich ruhiger, Stände trotzdem geöffnet.",
+      en: "Long market street in Notting Hill, busiest on Saturdays: antiques, vintage clothing, street food. Noticeably quieter on weekdays, with stalls still open.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Portobello%20Road%20Market&query_place_id=ChIJG1YB2m4RdkgRsetv9D40NGY",
+    lat: 51.51700, lng: -0.20585,
+  },
 
   /* ---------------- AKTIV & AUSFLÜGE ---------------- */
   {
@@ -202,5 +415,15 @@ const PLACES = [
     },
     maps: "https://www.google.com/maps/search/?api=1&query=Isle%20of%20Wight&query_place_id=ChIJOVZa5YeHdEgRUXy-QlHOOXQ",
     lat: 50.69385, lng: -1.30473,
+  },
+  {
+    name: "Queen Elizabeth Olympic Park",
+    cat: "trips", area: "Stratford",
+    desc: {
+      de: "Ehemaliges Olympiagelände von 2012 in Stratford, seitdem als Park mit Sportanlagen weiterbetrieben. Der ArcelorMittal Orbit (Aussichtsturm mit Rutsche) ist das Landmark, Eintritt ca. 15 £, die Rutsche kostet extra. Weitläufiges Gelände, gut zu Fuß oder mit dem Rad zu erkunden.",
+      en: "Former 2012 Olympic site in Stratford, kept running since as a park with sports venues. The ArcelorMittal Orbit (viewing tower with slide) is the landmark, entry around £15, the slide costs extra. Large grounds, good on foot or by bike.",
+    },
+    maps: "https://www.google.com/maps/search/?api=1&query=Queen%20Elizabeth%20Olympic%20Park&query_place_id=ChIJkf4NDG8ddkgRXEINXuEbip8",
+    lat: 51.54396, lng: -0.01521,
   },
 ];
