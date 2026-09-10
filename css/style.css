@@ -122,39 +122,6 @@ a:focus-visible, button:focus-visible {
 }
 .hero-lang-btn:hover { background: rgba(20, 20, 20, 0.75); }
 
-/* home button: fixed top-left corner of the hero photo, mirror image of the
-   language switch on the right. Leads back to the city index. */
-.hero-home-btn {
-  position: absolute;
-  top: max(16px, env(safe-area-inset-top));
-  left: 16px;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: 0.04em;
-  color: var(--cream);
-  background: rgba(20, 20, 20, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 999px;
-  padding: 7px 14px;
-  cursor: pointer;
-  text-decoration: none;
-}
-.hero-home-btn:hover { background: rgba(20, 20, 20, 0.75); text-decoration: none; }
-
-/* on the darkest phones both buttons must clear the h1; the hero already has
-   150px of top padding, so nothing else is needed here. */
-@media (max-width: 420px) {
-  .hero-home-btn, .hero-lang-btn { font-size: 12px; padding: 6px 11px; }
-}
-
 /* scudetto rule: the double stripe under section titles */
 .rule {
   height: 6px; width: 72px; margin: 22px 0 0;
@@ -331,30 +298,6 @@ footer a { color: var(--muted); text-decoration: underline; }
   #map { height: 300px; }
 }
 
-/* ---------- back to top ---------- */
-.back-to-top {
-  position: fixed;
-  right: 16px;
-  bottom: max(16px, env(safe-area-inset-bottom));
-  z-index: 400;
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(20, 20, 20, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: var(--cream);
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition: opacity .2s ease, transform .2s ease, background .15s;
-}
-.back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.back-to-top:hover { background: rgba(20, 20, 20, 0.92); }
-.back-to-top svg { width: 18px; height: 18px; }
-
 
 /* ---------- language toggle ---------- */
 body[data-lang="de"] .lang-en { display: none; }
@@ -415,6 +358,7 @@ body.theme-london {
   --c-food: #f4a13c;   /* warm amber, distinct from the red/yellow */
   --c-night: #e1251b;  /* Central red */
   --c-day: #ffd300;    /* Circle yellow */
+  --c-shop: #b48ee0;   /* soft violet, distinct from all transport-line colours */
   --c-trips: #6bcf97;  /* District-ish green */
 }
 
@@ -472,20 +416,4 @@ body.theme-london {
 
   /* map buttons also wrap a lot on small screens */
   .map-actions { flex-wrap: wrap; }
-}
-
-
-/* ============================================================
-   THEME: Rome — ochre accent on the shared anthracite base.
-   The giallorosso dark red is too low-contrast for links on
-   anthracite, so it is used as a category colour only.
-   ============================================================ */
-body.theme-rome {
-  --accent: #e0a838;   /* ochre */
-  --amber: #e0a838;
-  --c-food: #e0703f;   /* terracotta */
-  --c-drinks: #b5546b; /* wine red */
-  --c-sweet: #d8c07a;  /* pale gold */
-  --c-art: #7fa8d9;    /* blue */
-  --c-sights: #7fcf9b; /* green */
 }
